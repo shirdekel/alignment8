@@ -166,7 +166,7 @@ pre code {
 
 <h1 class="title toc-ignore">Clean alignment 8 data.</h1>
 <h4 class="author">Shir Dekel</h4>
-<h4 class="date">2021-05-17 19:27:02</h4>
+<h4 class="date">2021-05-18 09:58:05</h4>
 
 </div>
 
@@ -175,6 +175,8 @@ pre code {
 <pre class="r"><code>source(DataPackageR::project_path(&quot;packages.R&quot;))</code></pre>
 <pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer dplyr::filter over any other package</code></pre>
+<pre><code>## [conflicted] Removing existing preference</code></pre>
+<pre><code>## [conflicted] Will prefer purrr::flatten over any other package</code></pre>
 <pre class="r"><code>project_path(&quot;R&quot;) %&gt;%
   list.files(full.names = TRUE) %&gt;%
   lapply(source)</code></pre>
@@ -205,6 +207,14 @@ pre code {
 ## 
 ## [[3]]
 ## [[3]]$value
+## NULL
+## 
+## [[3]]$visible
+## [1] TRUE
+## 
+## 
+## [[4]]
+## [[4]]$value
 ## function(data, test_name, test_answer) {
 ##   data %&gt;%
 ##     rowwise() %&gt;%
@@ -231,12 +241,12 @@ pre code {
 ##     )
 ## }
 ## 
-## [[3]]$visible
+## [[4]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[4]]
-## [[4]]$value
+## [[5]]
+## [[5]]$value
 ## function(data, test, prolific_filter,
 ##                                             prolific_filter_label, test_name,
 ##                                             thesis_project, test_answer) {
@@ -299,12 +309,12 @@ pre code {
 ##     add_id_column(subject)
 ## }
 ## 
-## [[4]]$visible
+## [[5]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[5]]
-## [[5]]$value
+## [[6]]
+## [[6]]$value
 ## function(data_raw_prep, main_stage) {
 ##   data_other &lt;-
 ##     data_raw_prep %&gt;%
@@ -323,12 +333,12 @@ pre code {
 ##   return(data_other)
 ## }
 ## 
-## [[5]]$visible
+## [[6]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[6]]
-## [[6]]$value
+## [[7]]
+## [[7]]$value
 ## function(data_raw_jspsych_columns_unselected) {
 ##   names_to &lt;-
 ##     c(
@@ -366,12 +376,1097 @@ pre code {
 ##   return(data_raw_project_allocation_cleaned)
 ## }
 ## 
-## [[6]]$visible
+## [[7]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[7]]
-## [[7]]$value
+## [[8]]
+## [[8]]$value
+## function() {
+##   business_name &lt;-
+##     list(
+##       list(
+##         c(
+##           &quot;Pressbloom&quot;,
+##           &quot;Grown Media&quot;,
+##           &quot;Penny Gazette&quot;,
+##           &quot;Byline&quot;,
+##           &quot;National Editorial&quot;
+##         ),
+##         c(
+##           &quot;Pharmacore&quot;,
+##           &quot;Healthgenic&quot;,
+##           &quot;Drugcard&quot;,
+##           &quot;Genematic&quot;,
+##           &quot;Curezo&quot;
+##         ),
+##         c(
+##           &quot;Railmont&quot;,
+##           &quot;Rural Pass&quot;,
+##           &quot;Tresletrack&quot;,
+##           &quot;FreightCog&quot;,
+##           &quot;MetroAlley&quot;
+##         ),
+##         c(
+##           &quot;Erectic&quot;,
+##           &quot;Refit&quot;,
+##           &quot;Logis&quot;,
+##           &quot;Edifice&quot;,
+##           &quot;Boltwork&quot;
+##         ),
+##         c(
+##           &quot;Cweb&quot;,
+##           &quot;Codeck&quot;,
+##           &quot;Digics&quot;,
+##           &quot;Techip&quot;,
+##           &quot;Zenix&quot;
+##         )
+##       ),
+##       list(
+##         c(
+##           &quot;Refinera&quot;,
+##           &quot;Enfuel&quot;,
+##           &quot;Oilpier&quot;,
+##           &quot;Petroyield&quot;,
+##           &quot;Liquid Pipeline&quot;
+##         ),
+##         c(
+##           &quot;Microxy&quot;,
+##           &quot;Altchip&quot;,
+##           &quot;GridCircuit&quot;,
+##           &quot;Wired Board&quot;,
+##           &quot;Plextronics&quot;
+##         ),
+##         c(
+##           &quot;Logivia&quot;,
+##           &quot;Solgistics&quot;,
+##           &quot;Tough Haul&quot;,
+##           &quot;Direct Vector&quot;,
+##           &quot;Cargo Ace&quot;
+##         ),
+##         c(
+##           &quot;Dinerly&quot;,
+##           &quot;Savoro&quot;,
+##           &quot;Farmhouse Chef&quot;,
+##           &quot;LunchLover&quot;,
+##           &quot;Third Cook&quot;
+##         ),
+##         c(
+##           &quot;Vital Records&quot;,
+##           &quot;Poppin&quot;,
+##           &quot;Extasy&quot;,
+##           &quot;NextRecord&quot;,
+##           &quot;Dotsonic&quot;
+##         )
+##       )
+##     )
+##   return(business_name)
+## }
+## 
+## [[8]]$visible
+## [1] FALSE
+## 
+## 
+## [[9]]
+## [[9]]$value
+## function() {
+##   columns_alignment_8 &lt;-
+##     insert_property(
+##       subject = insert_javascript(&quot;jsPsych.randomization.randomID(15)&quot;),
+##       thesis_project = &quot;alignment&quot;,
+##       experiment = &quot;experiment8&quot;,
+##       sample = &quot;prolific&quot;,
+##       project_variation = insert_javascript(&quot;project_variation_condition&quot;),
+##       alignment = insert_javascript(&quot;alignment_condition&quot;),
+##       reliability_type = insert_javascript(&quot;reliability_type_condition&quot;),
+##       business_name_variation = &quot;business_name_variation_condition&quot; %&gt;%
+##         insert_javascript(),
+##       display_variation = &quot;display_variation_condition&quot; %&gt;%
+##         insert_javascript(),
+##       current_project_display_order = insert_javascript(&quot;1&quot;),
+##       PROLIFIC_PID = insert_javascript(&quot;urlvar.PROLIFIC_PID&quot;),
+##       STUDY_ID = insert_javascript(&quot;urlvar.STUDY_ID&quot;),
+##       SESSION_ID = insert_javascript(&quot;urlvar.SESSION_ID&quot;)
+##     )
+## 
+##   return(columns_alignment_8)
+## }
+## 
+## [[9]]$visible
+## [1] FALSE
+## 
+## 
+## [[10]]
+## [[10]]$value
+## function() {
+##   list(
+##     seq_len(5) %&gt;%
+##       list() %&gt;%
+##     rep(2)%&gt;%
+##     append(list(seq_len(2))),
+##     list(
+##       &quot;project_variation_condition&quot;,
+##       &quot;business_name_variation_condition&quot;,
+##       &quot;display_variation_condition&quot;
+##     )
+##   ) %&gt;%
+##     pmap_chr(
+##       ~ jspsych_sample(.x, .y)
+##     ) %&gt;%
+##     c(
+##       &quot;alignment_condition = jsPsych.randomization.sampleWithoutReplacement([&#39;low&#39;, &#39;high&#39;], 1)[0]&quot;,
+##       &quot;reliability_type_condition = jsPsych.randomization.sampleWithoutReplacement([&#39;implicit&#39;, &#39;explicit&#39;], 1)[0]&quot;,
+##       &quot;urlvar = jsPsych.data.urlVariables()&quot;,
+##       &quot;if typeof urlvar.project_variation != &#39;undefined&#39; then project_variation_condition = urlvar.project_variation;&quot;,
+##       &quot;if typeof urlvar.business_name_variation != &#39;undefined&#39; then business_name_variation_condition = urlvar.business_name_variation;&quot;,
+##       &quot;if typeof urlvar.display_variation != &#39;undefined&#39; then display_variation_condition = urlvar.display_variation;&quot;,
+##       &quot;if typeof urlvar.alignment != &#39;undefined&#39; then alignment_condition = urlvar.alignment;&quot;,
+##       &quot;if typeof urlvar.reliability_type != &#39;undefined&#39; then reliability_type_condition = urlvar.reliability_type;&quot;
+##     ) %&gt;%
+##     js::coffee_compile(bare = TRUE)
+## }
+## 
+## [[10]]$visible
+## [1] FALSE
+## 
+## 
+## [[11]]
+## [[11]]$value
+## function(data) {
+##   data %&gt;%
+##     mutate(
+##       display_variation = case_when(
+##         reliability_amount == &quot;low&quot; &amp; display_set == &quot;1&quot; ~ 1,
+##         reliability_amount == &quot;high&quot; &amp; display_set == &quot;2&quot; ~ 1,
+##         reliability_amount == &quot;low&quot; &amp; display_set == &quot;2&quot; ~ 2,
+##         reliability_amount == &quot;high&quot; &amp; display_set == &quot;1&quot; ~ 2
+##       )
+##     )
+## }
+## 
+## [[11]]$visible
+## [1] FALSE
+## 
+## 
+## [[12]]
+## [[12]]$value
+## function() {
+##   file_name_materials_alignment_8 &lt;-
+##     c(
+##       str_c(&quot;instructions_reliability_type&quot;, c(&quot;implicit&quot;, &quot;explicit&quot;), sep = &quot;_&quot;),
+##       str_c(&quot;interstitial&quot;, seq_len(2), sep = &quot;_&quot;),
+##       c(&quot;explicit&quot;, &quot;implicit&quot;) %&gt;%
+##         map(
+##           ~ str_c(
+##             &quot;project_allocation&quot;,
+##             &quot;alignment&quot;,
+##             &quot;low&quot;,
+##             &quot;reliability_type&quot;,
+##             .x,
+##             &quot;reliability_amount&quot;,
+##   # unclear why high/low order is different to expectation
+##             c(&quot;high&quot;, &quot;low&quot;),
+##             &quot;variation&quot;,
+##             seq_len(1),
+##             sep = &quot;_&quot;
+##           )
+##         ) %&gt;%
+##         unlist(),
+##       c(&quot;high&quot;, &quot;low&quot;) %&gt;%
+##         map(
+##           ~ str_c(
+##             &quot;project_allocation&quot;,
+##             &quot;alignment&quot;,
+##             &quot;high&quot;,
+##             &quot;reliability_type&quot;,
+##             &quot;implicit&quot;,
+##             &quot;reliability_amount&quot;,
+##             .x,
+##             &quot;variation&quot;,
+##             seq_len(5),
+##             sep = &quot;_&quot;
+##           )
+##         ) %&gt;%
+##         unlist()
+##     )
+## 
+##   return(file_name_materials_alignment_8)
+## }
+## 
+## [[12]]$visible
+## [1] FALSE
+## 
+## 
+## [[13]]
+## [[13]]$value
+## function() {
+##   instructions_main &lt;-
+##     c(
+##       &quot;For each project, you will see a range of possible NPVs alongside a &#39;midpoint&#39;. The range literally represents the range of plausible outcomes (a uniform distribution), but the midpoint is the best guess, and hence is the same as a single NPV. That is, all values within the range are equally likely, but the midpoint is still the best guess because it is the value that is closest to all the other values.&quot;,
+##       &quot;For each project, you will see an NPV, alongside a statement of whether NPV is considered to be a reliable (or an unreliable) metric for that project. There are usually a range of plausible NPV outcomes, so when NPV is considered to be \&quot;reliable\&quot; this means that the range of possible values is relatively narrow (indicating high confidence in the estimate). Conversely, when NPV is considered to be \&quot;unreliable\&quot;, this means that the range of possible values is relatively wider (indicating low confidence in the estimate).&quot;
+##     ) %&gt;%
+##     map(
+##       function(reliability_type) {
+##         c(
+##           &quot;Imagine that you are a CEO of a large company composed of many individual businesses.&quot;,
+##           &quot;You will be shown information about a number of projects that your company is considering to invest in. Each project is independent of the others. Some specific information about the project itself is provided. In addition to those numbers, you will find each project&#39;s net present value (NPV), which is the company&#39;s estimation of the future returns of the project. An NPV that is greater than 0 (zero) indicates that there is an expectation of profit. The higher the NPV, the better the expectations for each project.&quot;,
+##           reliability_type,
+##           &quot;Your task is to rank the projects in order of investment priority and decide how to allocate the available budget (as a percentage) between them.&quot;
+##         ) %&gt;%
+##           map_chr(
+##             ~ .x %&gt;%
+##               p() %&gt;%
+##               as.character()
+##           ) %&gt;%
+##           HTML()
+##       }
+##     )
+## 
+##   project_test &lt;-
+##     c(
+##       &quot;Test yourself on the above instructions. If Project A has an NPV of $100, and Project B has an NPV of $200, write in the following text box the name of the project that has a greater expectation of profit: &quot;
+##     ) %&gt;%
+##     get_survey_text(
+##       name = &quot;project_test&quot;,
+##       prefix = &quot;Project &quot;,
+##       required = NA,
+##       maxlength = 1,
+##       size = 2
+##     )
+## 
+##   instructions_html &lt;-
+##     instructions_main %&gt;%
+##     map(
+##       ~ div(
+##         .x,
+##         project_test
+##       ) %&gt;%
+##         as.character()
+##     )
+## 
+##   instructions &lt;-
+##     list(
+##       instructions_html,
+##       c(&quot;implicit&quot;, &quot;explicit&quot;)
+##     ) %&gt;%
+##     pmap(
+##       ~ trial_generic(
+##         &quot;survey-html-form&quot;,
+##         html = .x,
+##         data = insert_property(stage = &quot;instructions&quot;)
+##       ) %&gt;%
+##         build_timeline() %&gt;%
+##         display_if(fn_data_condition(reliability_type == !!.y))
+##     )
+## 
+##   return(instructions)
+## }
+## 
+## [[13]]$visible
+## [1] FALSE
+## 
+## 
+## [[14]]
+## [[14]]$value
+## function(interstitial_number) {
+##   interstitial_name &lt;-
+##     str_c(
+##       &quot;interstitial&quot;,
+##       interstitial_number,
+##       sep = &quot;_&quot;
+##     )
+## 
+##   interstitial_html &lt;-
+##     withTags(
+##       p(
+##         label(
+##           `for` = interstitial_name,
+##           str_c(
+##             &quot;To show that you are reading and paying attention,&quot;,
+##             &quot;please click on the following checkbox&quot;,
+##             strong(&quot;before&quot;) %&gt;%
+##               as.character(),
+##             &quot;clicking on \&quot;Continue\&quot;: &quot;,
+##             sep = &quot; &quot;
+##           ) %&gt;%
+##             HTML()
+##         ),
+##         input(
+##           type = &quot;checkbox&quot;,
+##           name = interstitial_name,
+##           id = &quot;pass&quot;,
+##         ),
+##         .noWS = &quot;inside&quot;
+##       )
+##     )
+## 
+##   div(
+##     p(
+##       &quot;You will now see project display #&#39; +
+##  jsPsych.data.getLastTrialData().select(&#39;current_project_display_order&#39;).values[0] +
+## &#39;. It is important that you pay attention and read through the task carefully.&quot;
+##     ),
+##     interstitial_html
+##   ) %&gt;%
+##     as.character() %&gt;%
+##     # .noWS didn&#39;t work for the newline between the two p tags
+##     str_remove_all(&quot;\\n&quot;) %&gt;%
+##     str_c(
+##       &quot;function() {
+##         interstitial = &#39;&quot;, ., &quot;&#39;
+##         return interstitial
+##         }&quot;
+##     ) %&gt;%
+##     insert_javascript()
+## }
+## 
+## [[14]]$visible
+## [1] FALSE
+## 
+## 
+## [[15]]
+## [[15]]$value
+## function(npv) {
+##   max_min_ratio &lt;-
+##     npv %&gt;%
+##     map(
+##       ~ .x %&gt;%
+##         max(.) / min(.)
+##     )
+## 
+##   intrinsic_feature_multipliers &lt;-
+##     list(
+##       list(
+##         c(max_min_ratio[1], max_min_ratio[1], max_min_ratio[1]),
+##         c(max_min_ratio[1], max_min_ratio[1], 1.1),
+##         c(max_min_ratio[1], max_min_ratio[1], max_min_ratio[1]),
+##         c(max_min_ratio[1], 1.3, max_min_ratio[1]),
+##         c(max_min_ratio[1], 1.6, max_min_ratio[1])
+##       ),
+##       list(
+##         c(max_min_ratio[2], max_min_ratio[2], 1.1),
+##         c(max_min_ratio[2], 1.2, 1.1),
+##         c(max_min_ratio[2], max_min_ratio[2], 1.05),
+##         c(max_min_ratio[2], max_min_ratio[2], max_min_ratio[2]),
+##         c(max_min_ratio[2], max_min_ratio[2], max_min_ratio[2])
+##       )
+##     ) %&gt;%
+##     map_depth(
+##       3,
+##       ~ seq(from = 1, to = .x, length.out = 5)
+##     )
+## 
+##   return(intrinsic_feature_multipliers)
+## }
+## 
+## [[15]]$visible
+## [1] FALSE
+## 
+## 
+## [[16]]
+## [[16]]$value
+## function(gambles, randomize_order = TRUE) {
+##     instructions &lt;-
+##         get_instructions_alignment_8()
+## 
+##     projects &lt;-
+##         get_projects_alignment_8()
+## 
+##     project_allocation &lt;-
+##         projects %&gt;%
+##         slider::slide(get_project_allocation, randomize_order)
+## 
+##     # Should be a timeline list with length the same as the number of trials to
+##     # include. If includes conditional timelines, each element of main should be a
+##     # list of two (one timeline, and conditional)
+## 
+##     main &lt;-
+##         instructions %&gt;%
+##         build_timeline(project_allocation) %&gt;%
+##         map(flatten)
+## 
+##     return(main)
+## }
+## 
+## [[16]]$visible
+## [1] FALSE
+## 
+## 
+## [[17]]
+## [[17]]$value
+## function() {
+##   npv &lt;-
+##     seq(from = 400, to = 800, length.out = 5) %&gt;%
+##     map(~ seq(from = .x, length.out = 51)) %&gt;%
+##     map(~ sample(., size = 2, replace = T)) %&gt;%
+##     transpose() %&gt;%
+##     map(unlist)
+## 
+##   return(npv)
+## }
+## 
+## [[17]]$visible
+## [1] FALSE
+## 
+## 
+## [[18]]
+## [[18]]$value
+## function() {
+##   drake_plan(
+##     experiment_resources = target(
+##       file.path(&quot;inst&quot;, &quot;experiment_resources&quot;),
+##       format = &quot;file&quot;
+##     ),
+##     main = target(
+##       get_main(gambles),
+##       ## Seed needed to recreate old target with different name. Generated from
+##       ## `diagnose(experiment4)$seed` in the original thesis project.
+##       seed = 1827196820
+##     ),
+##     experiment = target(
+##       {
+##         shirthesis::get_experiment(
+##           experiment_directory = file.path(&quot;inst&quot;, &quot;jspsych&quot;),
+##           experiment_resources,
+##           main,
+##           post_experiment = get_post_experiment(),
+##           columns = get_columns(),
+##           condition_allocation = get_condition_allocation(),
+##           ethics = FALSE,
+##           on_finish = NULL
+##         )
+##         file.path(&quot;inst&quot;, &quot;jspsych&quot;, &quot;experiment&quot;)
+##       },
+##       target = &quot;file&quot;
+##     ),
+##     materials = get_screenshots(experiment)
+##   )
+## }
+## 
+## [[18]]$visible
+## [1] FALSE
+## 
+## 
+## [[19]]
+## [[19]]$value
+## function() {
+##     ## debrief &lt;-
+##     ##     get_debrief()
+## 
+##     trial_end &lt;-
+##         shirthesis::get_trial_end()
+## 
+##     post &lt;-
+##         build_timeline(
+##             ## debrief,
+##             trial_end
+##         )
+## 
+##     return(post)
+## }
+## 
+## [[19]]$visible
+## [1] FALSE
+## 
+## 
+## [[20]]
+## [[20]]$value
+## function(projects, randomize_order) {
+##   trial_projects &lt;-
+##     trial_generic(
+##       &quot;survey-html-form4&quot;,
+##       html = insert_variable(&quot;allocation_table&quot;),
+##       data = insert_property(stage = &quot;project_allocation&quot;),
+##       preamble =
+##         &quot;Carefully read through the project descriptions below and then do the following: 1. Rank the projects between 1 (highest) and 5 (lowest) in order of investment priority in the relevant \&quot;Project Ranking\&quot; row input; and 2. Allocate each project a percentage (a number between 0 and 100) of the total budget in the relevant \&quot;Project Allocation\&quot; row input.&quot;
+##     )
+## 
+##   interstitial &lt;-
+##     trial_generic(
+##       &quot;survey-html-form&quot;,
+##       html = insert_variable(&quot;interstitial&quot;),
+##       data = insert_property(stage = &quot;interstitial&quot;),
+##     on_finish = insert_javascript(
+##         &quot;function() {
+##         current_project_display_order_value = 1 + jsPsych.data.getLastTrialData().select(&#39;current_project_display_order&#39;).values[0];
+##         jsPsych.data.addProperties({
+##         current_project_display_order: current_project_display_order_value
+##         });
+##         }&quot;
+##     )
+##     )
+## 
+##   interstitial_trials &lt;-
+##     seq_len(2) %&gt;%
+##     map(
+##       ~ get_interstitial(.x)
+##     )
+## 
+##   full_timeline &lt;-
+##     build_timeline(
+##       interstitial,
+##       trial_projects
+##     ) %&gt;%
+##     build_timeline() %&gt;%
+##     set_variables(
+##       allocation_table = projects$data[[1]]$project_table,
+##       interstitial = interstitial_trials
+##     ) %&gt;%
+##     set_parameters(randomize_order = randomize_order) %&gt;%
+##     build_timeline() %&gt;%
+##     display_if(
+##       fn_data_condition(
+##         reliability_type == !!projects$reliability_type
+##       )
+##     ) %&gt;%
+##     build_timeline() %&gt;%
+##     display_if(
+##       fn_data_condition(
+##         project_variation == !!projects$project_variation
+##       )
+##     ) %&gt;%
+##     build_timeline() %&gt;%
+##     display_if(
+##       fn_data_condition(
+##         alignment == !!projects$alignment
+##       )
+##     ) %&gt;%
+##     build_timeline() %&gt;%
+##     display_if(
+##       fn_data_condition(
+##         business_name_variation == !!projects$business_name_variation
+##       )
+##     ) %&gt;%
+##     build_timeline() %&gt;%
+##     display_if(
+##       fn_data_condition(
+##         display_variation == !!projects$display_variation
+##       )
+##     )
+## 
+## 
+##   return(full_timeline)
+## }
+## 
+## [[20]]$visible
+## [1] FALSE
+## 
+## 
+## [[21]]
+## [[21]]$value
+## function() {
+##   business_name &lt;-
+##     get_business_name()
+## 
+##   project_type &lt;-
+##     get_project_name()
+## 
+##   project_name_underlined &lt;-
+##     get_project_name_underlined(project_type)
+## 
+##   npv &lt;-
+##     get_npv()
+## 
+##   project_detail_feature &lt;-
+##     get_project_detail_feature()
+## 
+##   project_value_base &lt;-
+##     get_project_value_high()
+## 
+##   project_unit &lt;-
+##     get_project_unit()
+## 
+##   intrinsic_feature_multipliers &lt;-
+##     get_intrinsic_feature_multipliers(npv)
+## 
+##   project_number &lt;-
+##     1:5 %&gt;%
+##     as.numeric()
+## 
+##   project_detail_alignment_8 &lt;-
+##     tibble(
+##       project_detail_feature,
+##       project_value_base,
+##       project_unit,
+##       business_name,
+##       project_type,
+##       alignment_high_project_variation = project_number %&gt;%
+##         list() %&gt;%
+##         rep(2),
+##       alignment_low_npv_raw = npv %&gt;%
+##         map(rev),
+##       intrinsic_feature_multipliers,
+##       display_set = seq_len(2) %&gt;%
+##         as.numeric()
+##     ) %&gt;%
+##     unnest(
+##       c(
+##         project_detail_feature,
+##         project_value_base,
+##         project_unit,
+##         business_name,
+##         project_type,
+##         alignment_high_project_variation,
+##         alignment_low_npv_raw,
+##         intrinsic_feature_multipliers
+##       )
+##     ) %&gt;%
+##     unnest(
+##       c(
+##         project_detail_feature,
+##         project_value_base,
+##         project_unit,
+##         intrinsic_feature_multipliers
+##       )
+##     ) %&gt;%
+##     mutate(
+##       intrinsic_feature_rank = list(seq(from = 5, to = 1)),
+##       alignment_low_project_variation = list(project_number),
+##       alignment_high_npv_raw = npv %&gt;%
+##         map(rev) %&gt;%
+##         rep(each = 15)
+##     ) %&gt;%
+##     unnest(
+##       c(
+##         intrinsic_feature_multipliers,
+##         intrinsic_feature_rank,
+##         business_name,
+##         alignment_low_project_variation,
+##         alignment_high_npv_raw
+##       )
+##     ) %&gt;%
+##     rowwise() %&gt;%
+##     mutate(
+##       project_value = project_value_base %&gt;%
+##         prod(intrinsic_feature_multipliers) %&gt;%
+##         signif(digits = 3) %&gt;%
+##         # Prevent scientific notation
+##         as.integer() %&gt;%
+##         format(big.mark = &quot;,&quot;),
+##       combined = str_c(
+##         project_detail_feature, &quot;: &quot;, project_value, project_unit
+##       ),
+##       input_id_component = str_c(
+##         project_detail_feature %&gt;%
+##           str_replace_all(&quot; &quot;, &quot;-&quot;),
+##         project_value,
+##         sep = &quot;_&quot;
+##       )
+##     ) %&gt;%
+##     ungroup() %&gt;%
+##     nest_by(
+##       business_name,
+##       project_type,
+##       intrinsic_feature_rank,
+##       alignment_low_project_variation,
+##       alignment_high_project_variation,
+##       alignment_low_npv_raw,
+##       alignment_high_npv_raw,
+##       display_set
+##     ) %&gt;%
+##     mutate(
+##       html = multi_list(data$combined)
+##     ) %&gt;%
+##     pivot_longer(
+##       starts_with(&quot;alignment&quot;),
+##       names_to = c(&quot;alignment&quot;, &quot;name&quot;),
+##       names_pattern = &quot;alignment_(\\w+?)_(.*)&quot;,
+##     ) %&gt;%
+##     pivot_wider() %&gt;%
+##     rowwise() %&gt;%
+##     mutate(
+##       reliability_explicit = list(get_reliability_explicit(npv_raw)),
+##       reliability_implicit = list(get_reliability_implicit(npv_raw)),
+##       reliability_amount = list(c(&quot;low&quot;, &quot;high&quot;))
+##     ) %&gt;%
+##     unnest(
+##       c(
+##         reliability_explicit,
+##         reliability_implicit,
+##         reliability_amount
+##       )
+##     ) %&gt;%
+##     ungroup() %&gt;%
+##     pivot_longer(
+##       c(reliability_explicit, reliability_implicit),
+##       names_to = &quot;reliability_type&quot;,
+##       names_prefix = &quot;reliability_&quot;,
+##       values_to = &quot;npv&quot;
+##     ) %&gt;%
+##     rowwise() %&gt;%
+##     get_display()
+##   return(project_detail_alignment_8)
+## }
+## 
+## [[21]]$visible
+## [1] FALSE
+## 
+## 
+## [[22]]
+## [[22]]$value
+## function() {
+##   project_detail_feature &lt;-
+##     list(
+##       list(
+##         c(
+##           &quot;Newspapers printed&quot;,
+##           &quot;Pills pressed&quot;,
+##           &quot;Railway lines built&quot;,
+##           &quot;High-rises built&quot;,
+##           &quot;Code written&quot;
+##         ),
+##         c(
+##           &quot;Number of weekly advertisers&quot;,
+##           &quot;Shelf life&quot;,
+##           &quot;Number of seats filled by paying customers at peak hour&quot;,
+##           &quot;Probability that the builders complete construction within a month of the due date&quot;,
+##           &quot;Security rating&quot;
+##         ),
+##         c(
+##           &quot;Ink that is not discarded due to impurities&quot;,
+##           &quot;Probability of symptom reduction after a week&quot;,
+##           &quot;Time before the train carriages will need to be serviced&quot;,
+##           &quot;Number of tenant expressions of interest&quot;,
+##           &quot;Number of potential customers in first year&quot;
+##         )
+##       ),
+##       list(
+##         c(
+##           &quot;Oil extracted&quot;,
+##           &quot;Microchips produced&quot;,
+##           &quot;Packages shipped&quot;,
+##           &quot;Restaurants established&quot;,
+##           &quot;Record projects completed&quot;
+##         ),
+##         c(
+##           &quot;Time the machinery lasts before requiring maintenance&quot;,
+##           &quot;Usable semiconductor yield after testing&quot;,
+##           &quot;Number of packages that do not spend time in a bottleneck&quot;,
+##           &quot;Number of reservations on a Saturday night&quot;,
+##           &quot;Radio listenership nationally&quot;
+##         ),
+##         c(
+##           &quot;Probability of finding oil&quot;,
+##           &quot;Compatible PCs in the market&quot;,
+##           &quot;Average accuracy of shipments&quot;,
+##           &quot;Positive reviews&quot;,
+##           &quot;Relevant network connections&quot;
+##         )
+##       )
+##     ) %&gt;%
+##     map(
+##       ~ .x %&gt;%
+##         transpose() %&gt;%
+##         map(unlist)
+##     )
+## 
+##   return(project_detail_feature)
+## }
+## 
+## [[22]]$visible
+## [1] FALSE
+## 
+## 
+## [[23]]
+## [[23]]$value
+## function(project_name) {
+##     project_name_underlined &lt;-
+##         project_name %&gt;%
+##         map(
+##             ~ .x %&gt;%
+##                 map_chr(
+##                     ~ .x %&gt;%
+##                         tags$u() %&gt;%
+##                         as.character()
+##                 )
+##         )
+## 
+##     return(project_name_underlined)
+## }
+## 
+## [[23]]$visible
+## [1] FALSE
+## 
+## 
+## [[24]]
+## [[24]]$value
+## function() {
+##   project_name &lt;-
+##     list(
+##       c(
+##         &quot;national newspaper&quot;,
+##         &quot;pharmaceutical&quot;,
+##         &quot;railway&quot;,
+##         &quot;high-rise construction&quot;,
+##         &quot;software&quot;
+##       ),
+##       c(
+##         &quot;oil well&quot;,
+##         &quot;microchip&quot;,
+##         &quot;shipping logistics&quot;,
+##         &quot;restaurant chain&quot;,
+##         &quot;record label&quot;
+##       )
+##     )
+## 
+##   return(project_name)
+## }
+## 
+## [[24]]$visible
+## [1] FALSE
+## 
+## 
+## [[25]]
+## [[25]]$value
+## function(data, reliability_amount) {
+##   project_table &lt;-
+##     data %&gt;%
+##     rowwise() %&gt;%
+##     mutate(
+##       input_id = str_c(
+##         business_name %&gt;%
+##           str_replace_all(&quot; &quot;, &quot;-&quot;),
+##         project_type %&gt;%
+##           str_replace_all(&quot; &quot;, &quot;-&quot;),
+##         npv_raw,
+##         data$input_id_component %&gt;%
+##           str_c(collapse = &quot;_&quot;) %&gt;%
+##           str_remove_all(&quot;,&quot;),
+##         intrinsic_feature_rank,
+##         sep = &quot;_&quot;
+##       ),
+##       input_allocation = shirthesis::get_survey_number(
+##         label_text = &quot;Allocation: &quot;,
+##         name = input_id %&gt;%
+##           str_c(
+##             reliability_amount,
+##             &quot;allocation&quot;,
+##             sep = &quot;_&quot;
+##           ),
+##         class = &quot;allocation&quot;
+##       ) %&gt;%
+##         as.character(),
+##       input_ranking = shirthesis::get_survey_number(
+##         label_text = &quot;Ranking: &quot;,
+##         name = input_id %&gt;%
+##           str_c(
+##             reliability_amount,
+##             &quot;ranking&quot;,
+##             sep = &quot;_&quot;
+##           ),
+##         min = 1,
+##         max = 5,
+##         class = &quot;ranking&quot;
+##       ) %&gt;%
+##         as.character(),
+##       project_type_underlined = project_type %&gt;%
+##         tags$u() %&gt;%
+##         as.character()
+##     ) %&gt;%
+##     select(
+##       &quot;Project ranking&quot; = input_ranking,
+##       &quot;Project allocation (%)&quot; = input_allocation,
+##       &quot;Business name&quot; = business_name,
+##       &quot;Project type&quot; = project_type_underlined,
+##       &quot;Predicted project features&quot; = html,
+##       &quot;NPV ($)&quot; = npv
+##     )
+## 
+##   project_details &lt;-
+##     project_table %&gt;%
+##     as.list() %&gt;%
+##     unname() %&gt;%
+##     transpose()
+## 
+##   row_names &lt;-
+##     project_table %&gt;%
+##     names()
+## 
+##   header_row &lt;-
+##     c(
+##       &quot;Relevant information&quot;,
+##       str_c(&quot;Project&quot;, 1:5, sep = &quot; &quot;)
+##     )
+## 
+##   table_generation &lt;-
+##     list(
+##       project_details,
+##       row_names,
+##       header_row
+##     ) %&gt;%
+##     map(toJSON) %&gt;%
+##     str_c(collapse = &quot;, &quot;) %&gt;%
+##     str_c(
+##       &quot;generate_alignment_8_table(&quot;,
+##       .,
+##       &quot;)&quot;
+##     ) %&gt;%
+##     insert_javascript()
+## 
+##   return(table_generation)
+## }
+## 
+## [[25]]$visible
+## [1] FALSE
+## 
+## 
+## [[26]]
+## [[26]]$value
+## function() {
+##   project_unit &lt;-
+##     list(
+##       list(
+##         c(
+##           &quot; a day&quot;,
+##           &quot; an hour&quot;,
+##           &quot; a decade&quot;,
+##           &quot; a year&quot;,
+##           &quot; lines a day&quot;
+##         ),
+##         c(
+##           &quot;&quot;,
+##           &quot; months&quot;,
+##           &quot;&quot;,
+##           &quot;%&quot; %&gt;%
+##             rep(2)
+##         ),
+##         c(
+##           &quot;L a day&quot;,
+##           &quot;%&quot;,
+##           &quot; years&quot;,
+##           &quot;&quot;,
+##           &quot; million&quot;
+##         )
+##       ),
+##       list(
+##         c(
+##           &quot;L an hour&quot;,
+##           &quot; an hour&quot;,
+##           &quot; a week&quot;,
+##           &quot; a year&quot;,
+##           &quot; a year&quot;
+##         ),
+##         c(
+##           &quot; years&quot;,
+##           &quot;%&quot;,
+##           &quot; a day&quot;,
+##           &quot;&quot;,
+##           &quot; million&quot;
+##         ),
+##         c(
+##           &quot;%&quot; %&gt;%
+##             rep(3),
+##           &quot; a month&quot;,
+##           &quot;&quot;
+##         )
+##       )
+##     ) %&gt;%
+##     map(
+##       ~ .x %&gt;%
+##         transpose() %&gt;%
+##         map(unlist)
+##     )
+## 
+##   return(project_unit)
+## }
+## 
+## [[26]]$visible
+## [1] FALSE
+## 
+## 
+## [[27]]
+## [[27]]$value
+## function() {
+##   project_value_high &lt;-
+##     list(
+##       list(
+##         c(
+##           50000,
+##           300000,
+##           5,
+##           8,
+##           1000
+##         ),
+##         c(
+##           80,
+##           20,
+##           2000,
+##           70,
+##           60
+##         ),
+##         c(
+##           5000,
+##           90,
+##           12,
+##           100,
+##           3
+##         )
+##       ),
+##       list(
+##         c(
+##           2000,
+##           4000,
+##           800,
+##           9,
+##           8
+##         ),
+##         c(
+##           7,
+##           60,
+##           400,
+##           100,
+##           2
+##         ),
+##         c(
+##           90,
+##           80,
+##           94,
+##           40,
+##           13
+##         )
+##       )
+##     ) %&gt;%
+##     map(
+##       ~ .x %&gt;%
+##         transpose() %&gt;%
+##         map(unlist)
+##     )
+## 
+##   return(project_value_high)
+## }
+## 
+## [[27]]$visible
+## [1] FALSE
+## 
+## 
+## [[28]]
+## [[28]]$value
+## function() {
+##   projects &lt;-
+##     get_project_detail_alignment_8() %&gt;%
+##     mutate_business_name_latin() %&gt;%
+##     mutate_project_table() %&gt;%
+##     select(
+##       -c(
+##         data,
+##         business_name_latin_table,
+##         business_name_latin,
+##         npv_latin,
+##         npv_raw_latin,
+##         npv_raw_rep
+##       )
+##     ) %&gt;%
+##     nest(data = c(reliability_amount, project_table))
+## 
+##   return(projects)
+## }
+## 
+## [[28]]$visible
+## [1] FALSE
+## 
+## 
+## [[29]]
+## [[29]]$value
 ## function(data_check, prolific_filter, prolific_filter_label) {
 ##   if (is.na(prolific_filter_label)) prolific_filter_label &lt;- character(0)
 ##   file_name &lt;-
@@ -394,12 +1489,386 @@ pre code {
 ##     write_lines(here(&quot;inst&quot;, &quot;extdata&quot;, &quot;prolific_id&quot;, file_name))
 ## }
 ## 
-## [[7]]$visible
+## [[29]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[8]]
-## [[8]]$value
+## [[30]]
+## [[30]]$value
+## function(npv) {
+##   reliability_explicit_keyword &lt;-
+##     list(
+##       &quot;an &lt;b&gt;unreliable&lt;/b&gt;&quot;,
+##       &quot;a &lt;b&gt;reliable&lt;/b&gt;&quot;
+##     )
+## 
+##   reliability_explicit &lt;-
+##     reliability_explicit_keyword %&gt;%
+##     map_chr(
+##       ~ str_c(
+##         npv,
+##         &quot; million. &lt;br&gt;(In this industry, NPV is &quot;,
+##         .x,
+##         &quot; predictor of a project&#39;s profits.)&quot;
+##       )
+##     )
+## 
+##   return(reliability_explicit)
+## }
+## 
+## [[30]]$visible
+## [1] FALSE
+## 
+## 
+## [[31]]
+## [[31]]$value
+## function(npv) {
+##   range &lt;-
+##     npv %&gt;%
+##     map2_chr(
+##       c(0.85, 0.05), # low reliability, high reliability, to keep consistent
+##                      # with explicit reliability
+##       ~ getrange(.x, .y)
+##     )
+## 
+##   reliability_implicit &lt;-
+##     str_c(
+##       range,
+##       &quot; million.&lt;br&gt;(Midpoint: &quot;,
+##       npv,
+##       &quot;.)&quot;
+##     )
+## 
+##   return(reliability_implicit)
+## }
+## 
+## [[31]]$visible
+## [1] FALSE
+## 
+## 
+## [[32]]
+## [[32]]$value
+## function(experiment_directory) {
+##   file_name_materials &lt;-
+##     get_file_name_materials_alignment_8()
+## 
+##   materials_directory &lt;-
+##     file.path(&quot;inst&quot;, &quot;materials&quot;)
+## 
+##   file_path_materials &lt;-
+##     shirthesis::get_file_path_materials(materials_directory, file_name_materials)
+## 
+##   pre_experiment &lt;-
+##     str_c(
+##       &quot;this.click(&#39;#jspsych-instructions-next&#39;);&quot;,
+##       str_c(
+##         &quot;this.click(&#39;.jspsych-btn&#39;);&quot; %&gt;%
+##           rep(3),
+##         collapse = &quot;\n&quot;
+##       ),
+##       sep = &quot;\n&quot;
+##     )
+## 
+##   casper_calls_chronological &lt;-
+##     c(
+##       pre_experiment,
+##       &quot;this.click(&#39;.jspsych-btn&#39;);&quot; %&gt;%
+##         rep(4)
+##     ) %&gt;%
+##     slider::slide(~., .before = Inf) %&gt;%
+##     map_chr(
+##       ~ str_c(
+##         .,
+##         collapse = &quot;\n&quot;
+##       )
+##     )
+## 
+##   casper_calls &lt;-
+##     casper_calls_chronological %&gt;%
+##     .[
+##       c(
+##         # instructions implicit/explicit reliability
+##         1 %&gt;%
+##           rep(2),
+##         # interstitial 1
+##         2,
+##         # interstitial 1
+##         4,
+##         # reliability amount low alignment low reliability explicit
+##         3,
+##         # reliability amount high alignment low reliability explicit
+##         5,
+##         # reliability amount low alignment low reliability implicit
+##         3,
+##         # reliability amount high alignment low reliability implicit
+##         5,
+##         # reliability amount low alignment high x project variation (5)
+##         3 %&gt;%
+##           rep(5),
+##         # reliability amount high alignment high x project variation (5)
+##         5 %&gt;%
+##           rep(5)
+##       )
+##     ]
+## 
+##   alignment &lt;-
+##     c(
+##       &quot;low&quot; %&gt;%
+##         rep(8),
+##       &quot;high&quot; %&gt;%
+##         rep(10)
+##     )
+## 
+##   reliability_type &lt;-
+##     c(
+##       &quot;implicit&quot;,
+##       &quot;explicit&quot; %&gt;%
+##         rep(5),
+##       &quot;implicit&quot; %&gt;%
+##         rep(12)
+##     )
+## 
+##   project_variation &lt;-
+##     c(
+##       1 %&gt;%
+##         rep(8),
+##       seq_len(5) %&gt;%
+##         rep(2)
+##     )
+## 
+##   webshot_eval &lt;-
+##     list(
+##       casper_calls,
+##       alignment,
+##       reliability_type,
+##       project_variation
+##     ) %&gt;%
+##     pmap_chr(
+##       function(casper_calls, alignment, reliability_type, project_variation) {
+##         str_c(
+##           &quot;casper.thenOpen(this.getCurrentUrl() + &#39;&quot;,
+##           &quot;?test=true&quot;,
+##           &quot;&amp;display_variation=1&quot;,
+##           &quot;&amp;business_name_variation=1&quot;,
+##           &quot;&amp;alignment=&quot;,
+##           alignment,
+##           &quot;&amp;reliability_type=&quot;,
+##           reliability_type,
+##           &quot;&amp;project_variation=&quot;,
+##           project_variation,
+##           str_c(
+##             &quot;&#39;, function() {&quot;, casper_calls, &quot;});&quot;,
+##             sep = &quot;\n&quot;
+##           )
+##         )
+##       }
+##     )
+## 
+##   file.path(experiment_directory, &quot;index.html&quot;) %&gt;%
+##     webshot::webshot(
+##       file = file_path_materials,
+##       eval = webshot_eval,
+##       # to fit tables
+##       vwidth = 992 * 1.5
+##     )
+## }
+## 
+## [[32]]$visible
+## [1] FALSE
+## 
+## 
+## [[33]]
+## [[33]]$value
+## function(label_text, name, minlength = NULL, maxlength = NULL, required = NULL, size = NULL, prefix = NULL, suffix = NULL) {
+##   survey_text &lt;-
+##     withTags(
+##       p(
+##         label(
+##           `for` = name,
+##           label_text
+##         ),
+##         prefix,
+##         input(
+##           type = &quot;text&quot;,
+##           id = name,
+##           name = name,
+##           minlength = minlength,
+##           maxlength = maxlength,
+##           required = required,
+##           size = size,
+##         ),
+##         suffix
+##       )
+##     )
+## 
+##   return(survey_text)
+## }
+## 
+## [[33]]$visible
+## [1] FALSE
+## 
+## 
+## [[34]]
+## [[34]]$value
+## function(data, latin, name, npv_raw) {
+##   table_latin &lt;-
+##     list(
+##       latin,
+##       npv_raw
+##     ) %&gt;%
+##     pmap(
+##       ~ data %&gt;%
+##         mutate(
+##           &quot;{{name}}&quot; := .x,
+##           npv_raw = .y
+##           ) %&gt;%
+##         arrange(business_name)
+##     )
+## 
+##   return(table_latin)
+## }
+## 
+## [[34]]$visible
+## [1] FALSE
+## 
+## 
+## [[35]]
+## [[35]]$value
+## function(condition_level, condition_name) {
+##   if (!is.numeric(condition_level)) {
+##     condition_level &lt;-
+##       condition_level %&gt;%
+##       map(
+##         ~ str_c(&quot;&#39;&quot;, .x, &quot;&#39;&quot;)
+##       )
+##   }
+## 
+##   condition_level %&gt;%
+##       str_c(collapse = &quot;, &quot;) %&gt;%
+##       str_c(
+##         condition_name,
+##           &quot; = jsPsych.randomization.sampleWithReplacement([&quot;,
+##           .,
+##           &quot;], 1)[0]&quot;
+##       )
+## 
+## }
+## 
+## [[35]]$visible
+## [1] FALSE
+## 
+## 
+## [[36]]
+## [[36]]$value
+## function(x) {
+##     set.seed(42)
+##     y &lt;- magic::rlatin(length(x)) %&gt;%
+##         apply(1, function(x) as.list(x)) %&gt;%
+##         purrr::map(unlist)
+##     y %&gt;%
+##         purrr::map(~ x[.x])
+## }
+## 
+## [[36]]$visible
+## [1] FALSE
+## 
+## 
+## [[37]]
+## [[37]]$value
+## function(x) {
+##     htmltools::withTags({
+##         ul(x %&gt;%
+##             purrr::map(~ li(.x %&gt;%
+##                 htmltools::HTML(),
+##             .noWS = &quot;outside&quot;
+##             )))
+##     }) %&gt;%
+##         as.character()
+## }
+## 
+## [[37]]$visible
+## [1] FALSE
+## 
+## 
+## [[38]]
+## [[38]]$value
+## function(project_detail_alignment_8) {
+##   projects_business_name_latin &lt;-
+##     project_detail_alignment_8 %&gt;%
+##     nest_by(
+##       alignment,
+##       reliability_amount,
+##       reliability_type,
+##       project_variation,
+##       display_variation
+##     ) %&gt;%
+##     mutate(
+##       business_name_latin = data$business_name %&gt;%
+##         latin_list() %&gt;%
+##         list(),
+##       npv_latin = data$npv %&gt;%
+##         latin_list() %&gt;%
+##         list(),
+##       npv_raw_latin = data$npv_raw %&gt;%
+##         latin_list() %&gt;%
+##         list(),
+##       npv_raw_rep = data$npv_raw %&gt;%
+##         list() %&gt;%
+##         rep(5) %&gt;%
+##         list(),
+##       business_name_latin_table = case_when(
+##         # Shuffle business names for high alignment because npv needs to stay
+##         # connected to intrinsic features
+##         alignment == &quot;high&quot; ~ get_table_latin(
+##           data,
+##           business_name_latin,
+##           business_name,
+##           npv_raw_rep
+##         ) %&gt;%
+##           list(),
+##         # Shuffle npv for low alignment because business names need to stay
+##         # connected to intrinsic features
+##         alignment == &quot;low&quot; ~ get_table_latin(
+##           data,
+##           npv_latin,
+##           npv,
+##           npv_raw_latin
+##         ) %&gt;%
+##           list(),
+##       ),
+##       business_name_variation = seq_len(5) %&gt;%
+##         as.numeric() %&gt;%
+##         list()
+##     ) %&gt;%
+##     unnest(c(business_name_latin_table, business_name_variation))
+##   return(projects_business_name_latin)
+## }
+## 
+## [[38]]$visible
+## [1] FALSE
+## 
+## 
+## [[39]]
+## [[39]]$value
+## function(projects_business_name_latin) {
+##   projects_project_table &lt;-
+##     projects_business_name_latin %&gt;%
+##     rowwise() %&gt;%
+##     mutate(
+##       project_table = list(
+##         get_project_table(business_name_latin_table, reliability_amount)
+##       )
+##     ) %&gt;%
+##     ungroup()
+##   return(projects_project_table)
+## }
+## 
+## [[39]]$visible
+## [1] FALSE
+## 
+## 
+## [[40]]
+## [[40]]$value
 ## function(data_raw_intrinsic_features_pivoted) {
 ##   data_allocation &lt;-
 ##     data_raw_intrinsic_features_pivoted %&gt;%
@@ -410,12 +1879,12 @@ pre code {
 ##   return(data_allocation)
 ## }
 ## 
-## [[8]]$visible
+## [[40]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[9]]
-## [[9]]$value
+## [[41]]
+## [[41]]$value
 ## function(data_raw_project_allocation_cleaned) {
 ##   data_raw_intrinsic_features_pivoted &lt;-
 ##     data_raw_project_allocation_cleaned %&gt;%
@@ -433,23 +1902,12 @@ pre code {
 ##   return(data_raw_intrinsic_features_pivoted)
 ## }
 ## 
-## [[9]]$visible
+## [[41]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[10]]
-## [[10]]$value
-## # A tibble: 1 x 2
-##   target command                                                                
-##   &lt;chr&gt;  &lt;expr_lst&gt;                                                             
-## 1 test   {     ggplot(mtcars, aes(mpg, wt)) + geom_point()     ggsave(&quot;inst/mtc…
-## 
-## [[10]]$visible
-## [1] FALSE
-## 
-## 
-## [[11]]
-## [[11]]$value
+## [[42]]
+## [[42]]$value
 ## function(data) {
 ## 
 ##   duplicates_removed &lt;-
@@ -463,12 +1921,12 @@ pre code {
 ## 
 ## }
 ## 
-## [[11]]$visible
+## [[42]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[12]]
-## [[12]]$value
+## [[43]]
+## [[43]]$value
 ## function(data_other) {
 ##   interstitial_1_find &lt;-
 ##     data_other %&gt;%
@@ -485,7 +1943,7 @@ pre code {
 ##   }
 ## }
 ## 
-## [[12]]$visible
+## [[43]]$visible
 ## [1] FALSE</code></pre>
 <p>Clean data</p>
 <pre class="r"><code>data_raw_filtered &lt;-
@@ -499,10 +1957,9 @@ pre code {
   filter(
     experiment == &quot;experiment8&quot;,
     thesis_project == &quot;alignment&quot;
-  )</code></pre>
-<pre><code>## Warning: Duplicated column names deduplicated: &#39;id&#39; =&gt; &#39;id_1&#39; [5], &#39;id&#39; =&gt;
-## &#39;id_2&#39; [12]</code></pre>
-<pre class="r"><code>data_raw_jspsych_columns_unselected &lt;-
+  )
+
+data_raw_jspsych_columns_unselected &lt;-
   data_raw_filtered %&gt;%
   rowwise() %&gt;%
   mutate(
