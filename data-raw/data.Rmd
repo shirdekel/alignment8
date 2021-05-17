@@ -1,0 +1,92 @@
+---
+title: Clean alignment 8 data.
+author: Shir Dekel
+date: '`r format(Sys.time())`'
+output_format: html_document
+---
+
+Load packages and functions
+
+```{r}
+source(DataPackageR::project_path("packages.R"))
+project_path("R") %>%
+  list.files(full.names = TRUE) %>%
+  lapply(source)
+```
+
+Clean data
+
+```{r}
+data_raw_filtered <-
+  project_extdata_path("JSPsychData15-01-2021 12 39.csv") %>%
+  read_csv(col_types = cols()) %>%
+  select(sectionName, sectionValue, time_elapsed, dateCreated) %>%
+  pivot_wider(
+    names_from = "sectionName",
+    values_from = "sectionValue"
+  ) %>%
+  filter(
+    experiment == "experiment8",
+    thesis_project == "alignment"
+  )
+
+data_raw_jspsych_columns_unselected <-
+  data_raw_filtered %>%
+  rowwise() %>%
+  mutate(
+    across(stage, jsonlite::fromJSON)
+  )
+
+data_allocation <-
+  data_raw_jspsych_columns_unselected %>%
+  clean_project_allocation() %>%
+  pivot_intrinsic_features() %>%
+  pivot_dv()
+
+data_combined <-
+  data_raw_jspsych_columns_unselected %>%
+  clean_data_other_alignment_8("project_allocation") %>%
+  inner_join(data_allocation, by = "subject")
+
+data <-
+  data_combined %>%
+  mutate(
+    datetime = dateCreated %>%
+      dmy_hms(tz = "Australia/Sydney"),
+    total_time = time_elapsed %>%
+      map(~ .x %>%
+        max() / 60000), # Milliseconds to minutes
+    across(
+      c(
+        reliability_amount,
+        reliability_type,
+        alignment
+      ),
+      as.factor
+    ),
+    across(where(check_numeric), as.numeric),
+    ## Round down values for analysis. Subtract 1 for the case where it's on
+    ## the 50.
+    across(
+      npv_amount, ~ {
+        .x - 1
+      } %>%
+        signif(1)
+    )
+  ) %>%
+  select(-c(time_elapsed, dateCreated)) %>%
+  clean_data_finalise_with_tests(
+    test = FALSE,
+    prolific_filter = NULL,
+    prolific_filter_label = NULL,
+    project_test,
+    "alignment",
+    "b"
+  ) %>%
+  select(-c(
+    prolific, contact, address, company_name, PROLIFIC_PID, STUDY_ID,
+    SESSION_ID
+  ))
+```
+
+🔗
