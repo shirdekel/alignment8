@@ -4,11 +4,9 @@
 \alias{get_main}
 \title{Get main experiment trials for alignment 8}
 \usage{
-get_main(gambles, randomize_order = TRUE)
+get_main(randomize_order = TRUE)
 }
 \arguments{
-\item{gambles}{}
-
 \item{randomize_order}{}
 }
 \value{

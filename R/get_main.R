@@ -1,13 +1,10 @@
 ##' @title Get main experiment trials for alignment 8
 
-##' @param randomize_order
-##'
-##' @param gambles
-##'
+##' @param randomize_order 
 ##' @return
 ##' @author Shir Dekel
 ##' @export
-get_main <- function(gambles, randomize_order = TRUE) {
+get_main <- function(randomize_order = TRUE) {
     instructions <-
         get_instructions_alignment_8()
 
