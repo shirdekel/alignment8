@@ -1,15 +1,17 @@
-#' alignment8data
-#' A data package for alignment experiment 8.
+#' alignment8
+#' A data package for the Alignment 8 experiment.
 #' @docType package
-#' @aliases alignment8data-package
-#' @title Package Title
-#' @name alignment8data
-#' @description A description of the data package
-#' @details Use \code{data(package='alignment8data')$results[, 3]} to see a list of available data sets in this data package
+#' @aliases alignment8-package
+#' @title Alignment 8 experiment
+#' @name alignment8
+#' @description Data, materials, and experiment code for the Alignment 8 experiment.
+#' @details Use \code{data(package='alignment8')$results[, 3]} to see a list of available data sets in this data package
 #'     and/or DataPackageR::load_all
 #' _datasets() to load them.
 #' @seealso
 #' \link{data}
+#' \link{plot_simulation}
+#' \link{power}
 NULL
 
 
@@ -23,23 +25,9 @@ NULL
 #' \describe{
 #' \item{time_elapsed}{}
 #' }
-#' @source The data comes from________________________.
+#' @source The data was collected using Prolific.
 #' @seealso
 #' \link{alignment8data}
-NULL
-#' alignment8
-#' A data package for alignment8.
-#' @docType package
-#' @aliases alignment8-package
-#' @title Package Title
-#' @name alignment8
-#' @description A description of the data package
-#' @details Use \code{data(package='alignment8')$results[, 3]} to see a list of available data sets in this data package
-#'     and/or DataPackageR::load_all
-#' _datasets() to load them.
-#' @seealso
-#' \link{plot_simulation}
-#' \link{power}
 NULL
 
 

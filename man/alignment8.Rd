@@ -4,19 +4,20 @@
 \name{alignment8}
 \alias{alignment8}
 \alias{alignment8-package}
-\title{Package Title}
+\title{Alignment 8 experiment}
 \description{
-A description of the data package
+Data, materials, and experiment code for the Alignment 8 experiment.
 }
 \details{
 alignment8
-A data package for alignment8.
+A data package for the Alignment 8 experiment.
 
 Use \code{data(package='alignment8')$results[, 3]} to see a list of available data sets in this data package
 and/or DataPackageR::load_all
 _datasets() to load them.
 }
 \seealso{
+\link{data}
 \link{plot_simulation}
 \link{power}
 }

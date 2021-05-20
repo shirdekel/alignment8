@@ -166,16 +166,40 @@ pre code {
 
 <h1 class="title toc-ignore">Clean alignment 8 data.</h1>
 <h4 class="author">Shir Dekel</h4>
-<h4 class="date">2021-05-19 16:17:17</h4>
+<h4 class="date">2021-05-20 10:42:05</h4>
 
 </div>
 
 
 <p>Load packages and functions</p>
 <pre class="r"><code>source(DataPackageR::project_path(&quot;packages.R&quot;))</code></pre>
-<pre><code>## [conflicted] Removing existing preference</code></pre>
+<pre><code>## • {drake} is superseded: https://books.ropensci.org/targets/drake.html
+## • Consider {targets} instead: https://docs.ropensci.org/targets/
+## • Effective 2021-01-21</code></pre>
+<pre><code>## 
+## ************
+## Welcome to faux. For support and examples visit:
+## http://debruine.github.io/faux/
+## - Get and set global package options with: faux_options()
+## ************</code></pre>
+<pre><code>## Loading required package: tinylabels</code></pre>
+<pre><code>## Loading required package: lme4</code></pre>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## 
+## Attaching package: &#39;Matrix&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:tidyr&#39;:
+## 
+##     expand, pack, unpack</code></pre>
+<pre><code>## The following object is masked from &#39;package:drake&#39;:
+## 
+##     expand</code></pre>
+<pre><code>## Registered S3 methods overwritten by &#39;car&#39;:
+##   method                          from
+##   influence.merMod                lme4
+##   cooks.distance.influence.merMod lme4
+##   dfbeta.influence.merMod         lme4
+##   dfbetas.influence.merMod        lme4</code></pre>
 <pre><code>## [conflicted] Will prefer dplyr::filter over any other package</code></pre>
-<pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer purrr::flatten over any other package</code></pre>
 <pre class="r"><code>project_path(&quot;R&quot;) %&gt;%
   list.files(full.names = TRUE) %&gt;%
@@ -1144,7 +1168,24 @@ pre code {
 ##       },
 ##       target = &quot;file&quot;
 ##     ),
-##     materials = get_screenshots(experiment),
+##     main_testing = get_main(randomize_order = FALSE),
+##     experiment_testing = target(
+##       {
+##         shirthesis::get_experiment(
+##           experiment_directory = file.path(&quot;inst&quot;, &quot;jspsych&quot;, &quot;testing&quot;),
+##           experiment_resources,
+##           main_testing,
+##           post_experiment = get_post_experiment(),
+##           columns = get_columns(),
+##           condition_allocation = get_condition_allocation(),
+##           ethics = FALSE,
+##           on_finish = NULL
+##         )
+##         file.path(&quot;inst&quot;, &quot;jspsych&quot;, &quot;testing&quot;, &quot;experiment&quot;)
+##       },
+##       target = &quot;file&quot;
+##     ),
+##     materials = get_screenshots(experiment_testing),
 ##     data_simulation = target(
 ##       get_data_simulation(),
 ##       ## Seed needed to recreate old target with different name so that the same
@@ -2275,6 +2316,22 @@ pre code {
 ## 
 ## [[44]]
 ## [[44]]$value
+## function(npv, percent) {
+##   stringr::str_c(
+##     (npv - npv * percent) %&gt;%
+##       round(),
+##     &quot;-&quot;,
+##     (npv + npv * percent) %&gt;%
+##       round()
+##   )
+## }
+## 
+## [[44]]$visible
+## [1] FALSE
+## 
+## 
+## [[45]]
+## [[45]]$value
 ## function(condition_level, condition_name) {
 ##   if (!is.numeric(condition_level)) {
 ##     condition_level &lt;-
@@ -2295,12 +2352,12 @@ pre code {
 ## 
 ## }
 ## 
-## [[44]]$visible
+## [[45]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[45]]
-## [[45]]$value
+## [[46]]
+## [[46]]$value
 ## function(x) {
 ##     set.seed(42)
 ##     y &lt;- magic::rlatin(length(x)) %&gt;%
@@ -2310,12 +2367,12 @@ pre code {
 ##         purrr::map(~ x[.x])
 ## }
 ## 
-## [[45]]$visible
+## [[46]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[46]]
-## [[46]]$value
+## [[47]]
+## [[47]]$value
 ## function(x) {
 ##     htmltools::withTags({
 ##         ul(x %&gt;%
@@ -2327,12 +2384,12 @@ pre code {
 ##         as.character()
 ## }
 ## 
-## [[46]]$visible
+## [[47]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[47]]
-## [[47]]$value
+## [[48]]
+## [[48]]$value
 ## function(project_detail_alignment_8) {
 ##   projects_business_name_latin &lt;-
 ##     project_detail_alignment_8 %&gt;%
@@ -2385,12 +2442,12 @@ pre code {
 ##   return(projects_business_name_latin)
 ## }
 ## 
-## [[47]]$visible
+## [[48]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[48]]
-## [[48]]$value
+## [[49]]
+## [[49]]$value
 ## function(projects_business_name_latin) {
 ##   projects_project_table &lt;-
 ##     projects_business_name_latin %&gt;%
@@ -2404,12 +2461,12 @@ pre code {
 ##   return(projects_project_table)
 ## }
 ## 
-## [[48]]$visible
+## [[49]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[49]]
-## [[49]]$value
+## [[50]]
+## [[50]]$value
 ## function(data_raw_intrinsic_features_pivoted) {
 ##   data_allocation &lt;-
 ##     data_raw_intrinsic_features_pivoted %&gt;%
@@ -2420,12 +2477,12 @@ pre code {
 ##   return(data_allocation)
 ## }
 ## 
-## [[49]]$visible
+## [[50]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[50]]
-## [[50]]$value
+## [[51]]
+## [[51]]$value
 ## function(data_raw_project_allocation_cleaned) {
 ##   data_raw_intrinsic_features_pivoted &lt;-
 ##     data_raw_project_allocation_cleaned %&gt;%
@@ -2443,12 +2500,12 @@ pre code {
 ##   return(data_raw_intrinsic_features_pivoted)
 ## }
 ## 
-## [[50]]$visible
+## [[51]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[51]]
-## [[51]]$value
+## [[52]]
+## [[52]]$value
 ## function(data) {
 ## 
 ##   duplicates_removed &lt;-
@@ -2462,12 +2519,12 @@ pre code {
 ## 
 ## }
 ## 
-## [[51]]$visible
+## [[52]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[52]]
-## [[52]]$value
+## [[53]]
+## [[53]]$value
 ## function(data_other) {
 ##   interstitial_1_find &lt;-
 ##     data_other %&gt;%
@@ -2484,12 +2541,12 @@ pre code {
 ##   }
 ## }
 ## 
-## [[52]]$visible
+## [[53]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[53]]
-## [[53]]$value
+## [[54]]
+## [[54]]$value
 ## function(simulation_results, nsim) {
 ##   simulation_results %&gt;%
 ##     group_by(effect) %&gt;%
@@ -2504,7 +2561,7 @@ pre code {
 ##     ungroup()
 ## }
 ## 
-## [[53]]$visible
+## [[54]]$visible
 ## [1] FALSE</code></pre>
 <p>Clean data</p>
 <pre class="r"><code>data_raw_filtered &lt;-
