@@ -166,7 +166,7 @@ pre code {
 
 <h1 class="title toc-ignore">Clean alignment 8 data.</h1>
 <h4 class="author">Shir Dekel</h4>
-<h4 class="date">2021-05-18 09:58:05</h4>
+<h4 class="date">2021-05-19 16:17:17</h4>
 
 </div>
 
@@ -532,6 +532,242 @@ pre code {
 ## 
 ## [[11]]
 ## [[11]]$value
+## function(data, pb) {
+##   pb$tick()
+## 
+##   model &lt;-
+##     data %&gt;%
+##     lm(
+##     allocation ~
+##     npv_amount * reliability_amount * alignment * reliability_type ,
+##       data = .
+##     )
+## 
+##   four_way &lt;-
+##     model %&gt;%
+##     tidy() %&gt;%
+##     filter(term == &quot;npv_amount:reliability_amount1:alignment1:reliability_type1&quot;)
+## 
+##   emm_full &lt;-
+##     emtrends(model, c(&quot;reliability_amount&quot;, &quot;reliability_type&quot;, &quot;alignment&quot;),
+##              var = &quot;npv_amount&quot;
+##              )
+## 
+##   emm_partial &lt;-
+##     model %&gt;%
+##     emtrends(c(&quot;reliability_type&quot;, &quot;alignment&quot;), var = &quot;npv_amount&quot;)
+## 
+##   ## High alignment: NPV amount x reliability amount x reliability type
+## 
+##   alignment_high_three_way &lt;-
+##     emm_full %&gt;%
+##     contrast(interaction = &quot;pairwise&quot;, by = &quot;alignment&quot;) %&gt;%
+##     tidy() %&gt;%
+##     filter(alignment == &quot;high&quot;)
+## 
+##   ## Explicit reliability: NPV amount x reliability amount x alignment
+## 
+##   reliability_type_explicit_three_way &lt;-
+##     emm_full %&gt;%
+##     contrast(interaction = &quot;pairwise&quot;, by = &quot;reliability_type&quot;) %&gt;%
+##     tidy() %&gt;%
+##     filter(reliability_type == &quot;explicit&quot;)
+## 
+##   ## Low alignment: NPV amount x reliability type
+## 
+##   alignment_low_two_way &lt;-
+##     emm_partial %&gt;%
+##     contrast(interaction = &quot;pairwise&quot;, by = &quot;alignment&quot;) %&gt;%
+##     tidy() %&gt;%
+##     filter(alignment == &quot;low&quot;)
+## 
+##   ## High alignment explicit reliability: low vs high reliability
+## 
+##   alignment_high_reliability_type_explicit_reliability_amount &lt;-
+##     emm_full %&gt;%
+##     pairs(by = c(&quot;alignment&quot;, &quot;reliability_type&quot;)) %&gt;%
+##     tidy() %&gt;%
+##     filter(alignment == &quot;high&quot;, reliability_type == &quot;explicit&quot;)
+## 
+##   ## Low explicit reliability: low vs high alignment
+## 
+##   reliability_type_explicit_reliability_amount_low_alignment &lt;-
+##     emm_full %&gt;%
+##     pairs(by = c(&quot;reliability_amount&quot;, &quot;reliability_type&quot;)) %&gt;%
+##     tidy() %&gt;%
+##     filter(reliability_amount == &quot;low&quot;, reliability_type == &quot;explicit&quot;)
+## 
+##   ## Low alignment: implicit vs explicit reliability (averaged over reliability amount)
+## 
+##   alignment_low_reliability_type &lt;-
+##     emm_partial %&gt;%
+##     pairs(by = &quot;alignment&quot;) %&gt;%
+##     tidy() %&gt;%
+##     filter(alignment == &quot;low&quot;)
+## 
+##   ## Implicit reliability: low vs high alignment (averaged over reliability amount)
+## 
+##   reliability_type_implicit_alignment_null &lt;-
+##     emm_partial %&gt;%
+##     pairs(by = &quot;reliability_type&quot;) %&gt;%
+##     tidy(side = &quot;equivalence&quot;, delta = 0.022) %&gt;%
+##     filter(reliability_type == &quot;implicit&quot;)
+## 
+##   ## Low and high alignment implicit reliability: low vs high reliability amount
+## 
+##   alignment_reliability_type_implicit_reliability_amount_null &lt;-
+##     emm_full %&gt;%
+##     pairs(by = c(&quot;alignment&quot;, &quot;reliability_type&quot;)) %&gt;%
+##     tidy(side = &quot;equivalence&quot;, delta = 0.022) %&gt;%
+##     filter(reliability_type == &quot;implicit&quot;)
+## 
+##   alignment_high_reliability_type_implicit_reliability_amount_null &lt;-
+##     alignment_reliability_type_implicit_reliability_amount_null %&gt;%
+##     filter(alignment == &quot;high&quot;)
+## 
+##   alignment_low_reliability_type_implicit_reliability_amount_null &lt;-
+##     alignment_reliability_type_implicit_reliability_amount_null %&gt;%
+##     filter(alignment == &quot;low&quot;)
+## 
+##   effect_names &lt;-
+##     c(
+##       four_way = &quot;Alignment x reliability type x reliability amount x NPV amount&quot;,
+##       alignment_high_three_way = &quot;High alignment: reliability type x reliability amount x NPV amount&quot;,
+##       reliability_type_explicit_three_way = &quot;Explicit reliability: alignment x reliability amount x NPV amount&quot;,
+##       alignment_low_two_way = &quot;Low alignment: reliability type x NPV amount&quot;,
+##       alignment_high_reliability_type_explicit_reliability_amount = &quot;High alignment, explicit reliability: low vs high reliability&quot;,
+##       reliability_type_explicit_reliability_amount_low_alignment = &quot;Low explicit reliability: low vs high alignment&quot;,
+##       alignment_low_reliability_type = &quot;Low alignment: implicit vs explicit reliability&quot;,
+##       reliability_type_implicit_alignment_null = &quot;Implicit reliability: low vs high alignment&quot;,
+##       alignment_low_reliability_type_implicit_reliability_amount_null = &quot;Low alignment, implicit reliability: low vs high reliability&quot;,
+##       alignment_high_reliability_type_implicit_reliability_amount_null = &quot;High alignment, implicit reliability: low vs high reliability&quot;
+##     )
+## 
+##   data_simulation_results &lt;-
+##     bind_rows(
+##       four_way = four_way,
+##       alignment_high_three_way = alignment_high_three_way,
+##       reliability_type_explicit_three_way = reliability_type_explicit_three_way,
+##       alignment_low_two_way = alignment_low_two_way,
+##       alignment_high_reliability_type_explicit_reliability_amount = alignment_high_reliability_type_explicit_reliability_amount,
+##       reliability_type_explicit_reliability_amount_low_alignment = reliability_type_explicit_reliability_amount_low_alignment,
+##       alignment_low_reliability_type = alignment_low_reliability_type,
+##       reliability_type_implicit_alignment_null = reliability_type_implicit_alignment_null,
+##       alignment_low_reliability_type_implicit_reliability_amount_null = alignment_low_reliability_type_implicit_reliability_amount_null,
+##       alignment_high_reliability_type_implicit_reliability_amount_null = alignment_high_reliability_type_implicit_reliability_amount_null,
+##       .id = &quot;effect&quot;
+##     ) %&gt;%
+##     mutate(
+##       effect_type = case_when(
+##         str_detect(effect, &quot;four_way&quot;) ~ &quot;four_way_interaction&quot;,
+##         str_detect(effect, &quot;three_way&quot;) ~ &quot;three_way_interaction&quot;,
+##         str_detect(effect, &quot;two_way&quot;) ~ &quot;two_way_interaction&quot;,
+##         str_detect(effect, &quot;null&quot;) ~ &quot;simple_effect_null&quot;,
+##         TRUE ~ &quot;simple_effect&quot;
+##       ) %&gt;%
+##         fct_relevel(
+##           c(
+##             &quot;four_way_interaction&quot;,
+##             &quot;three_way_interaction&quot;,
+##             &quot;two_way_interaction&quot;,
+##             &quot;simple_effect&quot;,
+##             &quot;simple_effect_null&quot;
+##           )
+##         ),
+##       across(
+##         effect,
+##         ~ .x %&gt;%
+##           recode(!!!effect_names)
+##       )
+##     )
+## 
+##   return(data_simulation_results)
+## }
+## 
+## [[11]]$visible
+## [1] FALSE
+## 
+## 
+## [[12]]
+## [[12]]$value
+## function() {
+##   npv_amount &lt;-
+##     get_npv()
+## 
+##   data_simulation_raw &lt;-
+##     get_model_alignment_8(8, npv_amount) %&gt;%
+##     model.frame() %&gt;%
+##     as_tibble()
+## 
+##   return(data_simulation_raw)
+## }
+## 
+## [[12]]$visible
+## [1] FALSE
+## 
+## 
+## [[13]]
+## [[13]]$value
+## function(n = 8, npv_amount) {
+##   reliability_amount &lt;- c(&quot;low&quot;, &quot;high&quot;)
+##   reliability_type &lt;- c(&quot;implicit&quot;, &quot;explicit&quot;)
+##   alignment &lt;- c(&quot;low&quot;, &quot;high&quot;)
+##   display_variation &lt;- seq_len(2)
+## 
+##   counterbalanced_npv &lt;-
+##     expand_grid(
+##       npv_amount,
+##       reliability_amount
+##     ) %&gt;%
+##     mutate(
+##       display_variation = c(
+##         display_variation,
+##         display_variation %&gt;%
+##           rev()
+##       ) %&gt;%
+##         as.factor()
+##     ) %&gt;%
+##     unnest(npv_amount) %&gt;%
+##     arrange(display_variation)
+## 
+##   between &lt;- lst(
+##     alignment,
+##     reliability_type,
+##     display_variation
+##   )
+## 
+##   within &lt;- lst(
+##     reliability_amount,
+##   )
+## 
+##   df &lt;-
+##     faux::sim_design(
+##       within,
+##       between,
+##       n = n / 8,
+##       plot = FALSE,
+##       long = TRUE
+##     ) %&gt;%
+##     left_join(counterbalanced_npv,
+##       by = c(&quot;display_variation&quot;, &quot;reliability_amount&quot;)
+##     ) %&gt;%
+##     arrange(id) %&gt;%
+##     mutate(
+##       across(reliability_amount, ~ .x %&gt;%
+##         fct_relevel(c(&quot;low&quot;, &quot;high&quot;)))
+##     ) %&gt;%
+##     as_tibble() %&gt;%
+##     select(-y)
+## 
+##   return(df)
+## }
+## 
+## [[13]]$visible
+## [1] FALSE
+## 
+## 
+## [[14]]
+## [[14]]$value
 ## function(data) {
 ##   data %&gt;%
 ##     mutate(
@@ -544,12 +780,12 @@ pre code {
 ##     )
 ## }
 ## 
-## [[11]]$visible
+## [[14]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[12]]
-## [[12]]$value
+## [[15]]
+## [[15]]$value
 ## function() {
 ##   file_name_materials_alignment_8 &lt;-
 ##     c(
@@ -593,12 +829,12 @@ pre code {
 ##   return(file_name_materials_alignment_8)
 ## }
 ## 
-## [[12]]$visible
+## [[15]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[13]]
-## [[13]]$value
+## [[16]]
+## [[16]]$value
 ## function() {
 ##   instructions_main &lt;-
 ##     c(
@@ -662,12 +898,12 @@ pre code {
 ##   return(instructions)
 ## }
 ## 
-## [[13]]$visible
+## [[16]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[14]]
-## [[14]]$value
+## [[17]]
+## [[17]]$value
 ## function(interstitial_number) {
 ##   interstitial_name &lt;-
 ##     str_c(
@@ -720,12 +956,12 @@ pre code {
 ##     insert_javascript()
 ## }
 ## 
-## [[14]]$visible
+## [[17]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[15]]
-## [[15]]$value
+## [[18]]
+## [[18]]$value
 ## function(npv) {
 ##   max_min_ratio &lt;-
 ##     npv %&gt;%
@@ -759,12 +995,12 @@ pre code {
 ##   return(intrinsic_feature_multipliers)
 ## }
 ## 
-## [[15]]$visible
+## [[18]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[16]]
-## [[16]]$value
+## [[19]]
+## [[19]]$value
 ## function(gambles, randomize_order = TRUE) {
 ##     instructions &lt;-
 ##         get_instructions_alignment_8()
@@ -788,12 +1024,81 @@ pre code {
 ##     return(main)
 ## }
 ## 
-## [[16]]$visible
+## [[19]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[17]]
-## [[17]]$value
+## [[20]]
+## [[20]]$value
+## function(n = 8, npv_amount) {
+## 
+##   afex::set_sum_contrasts()
+## 
+##   df &lt;-
+##     get_df_alignment_8(n, npv_amount)
+## 
+##   model_alignment_2 &lt;-
+##     alignment2::data %&gt;%
+##     filter(reliability_amount != &quot;noNPV&quot;) %&gt;%
+##     droplevels() %&gt;%
+##     nest_by(id, allocation, alignment, reliability_amount, npv_amount) %&gt;%
+##     lm(
+##       allocation ~ alignment * reliability_amount * npv_amount,
+##       data = .
+##     )
+## 
+##   y_explicit &lt;-
+##     predict(model_alignment_2, newdata = df)
+## 
+##   data_simulation_explicit &lt;-
+##     df %&gt;%
+##     mutate(
+##       allocation = y_explicit,
+##       reliability_type = &quot;explicit&quot;
+##     )
+## 
+##   intercept_alignment_2 &lt;-
+##     model_alignment_2 %&gt;%
+##     broom::tidy() %&gt;%
+##     filter(term == &quot;(Intercept)&quot;) %&gt;%
+##     pull(estimate)
+## 
+##   residual_sd_alignment_2 &lt;-
+##     model_alignment_2 %&gt;%
+##     broom::glance() %&gt;%
+##     pull(sigma)
+## 
+##   data_simulation_implicit &lt;-
+##     df %&gt;%
+##     mutate(
+##       allocation = intercept_alignment_2
+##     ) %&gt;%
+##     mutate(reliability_type = &quot;implicit&quot;)
+## 
+##   data_simulation_raw &lt;-
+##     data_simulation_implicit %&gt;%
+##     bind_rows(data_simulation_explicit) %&gt;%
+##     mutate(
+##       across(reliability_type, ~ .x %&gt;%
+##         fct_relevel(c(&quot;implicit&quot;, &quot;explicit&quot;)))
+##     )
+## 
+##   model &lt;-
+##     lm(
+##       allocation ~
+##       npv_amount * reliability_amount * alignment * reliability_type,
+##       data = data_simulation_raw,
+##     )
+## 
+##   return(model)
+## }
+## 
+## [[20]]$visible
+## [1] FALSE
+## 
+## 
+## [[21]]
+## [[21]]$value
 ## function() {
 ##   npv &lt;-
 ##     seq(from = 400, to = 800, length.out = 5) %&gt;%
@@ -805,12 +1110,12 @@ pre code {
 ##   return(npv)
 ## }
 ## 
-## [[17]]$visible
+## [[21]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[18]]
-## [[18]]$value
+## [[22]]
+## [[22]]$value
 ## function() {
 ##   drake_plan(
 ##     experiment_resources = target(
@@ -839,16 +1144,61 @@ pre code {
 ##       },
 ##       target = &quot;file&quot;
 ##     ),
-##     materials = get_screenshots(experiment)
+##     materials = get_screenshots(experiment),
+##     data_simulation = target(
+##       get_data_simulation(),
+##       ## Seed needed to recreate old target with different name so that the same
+##       ## `npv_amount` vector is generated. Generated from
+##       ## `diagnose(data_simulation_alignment_8)$seed` in the original thesis
+##       ## project.
+##       seed = 623005508
+##     ),
+##     plot_simulation = get_plot_simulation(data_simulation),
+##     power_table = target(
+##       get_power_table(),
+##       ## Seed needed to recreate old target with different name so that the same
+##       ## `npv_amount` vector is generated as in the experiment generation.
+##       ## Generated from `diagnose(experiment4)$seed` in the original thesis
+##       ## project.
+##       seed = 1827196820
+##     ),
+##     power = get_power(power_table)
 ##   )
 ## }
 ## 
-## [[18]]$visible
+## [[22]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[19]]
-## [[19]]$value
+## [[23]]
+## [[23]]$value
+## function(data) {
+##     data %&gt;%
+##         ggplot(
+##             aes(
+##                 y = allocation,
+##                 x = npv_amount,
+##                 linetype = reliability_amount,
+##                 fill = reliability_amount
+##             )
+##         ) +
+##         facet_grid(
+##             cols = vars(reliability_type),
+##             rows = vars(alignment),
+##             labeller = &quot;label_both&quot;
+##         ) +
+##         geom_point(shape = 21, colour = &quot;black&quot;, alpha = 0.7) +
+##         geom_smooth(method = &quot;lm&quot;, colour = &quot;black&quot;) +
+##         scale_fill_grey(start = 0.2, end = 0.8) +
+##         papaja::theme_apa(base_size = 10)
+## }
+## 
+## [[23]]$visible
+## [1] FALSE
+## 
+## 
+## [[24]]
+## [[24]]$value
 ## function() {
 ##     ## debrief &lt;-
 ##     ##     get_debrief()
@@ -865,12 +1215,158 @@ pre code {
 ##     return(post)
 ## }
 ## 
-## [[19]]$visible
+## [[24]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[20]]
-## [[20]]$value
+## [[25]]
+## [[25]]$value
+## function(data_power, data_label) {
+##   power_curve &lt;-
+##     data_power %&gt;%
+##     ggplot(aes(
+##       x = n,
+##       y = power,
+##       group = 1,
+##       colour = effect_type
+##     )) +
+##     facet_wrap(
+##       facets = vars(effect),
+##       labeller = labeller(effect = label_wrap_gen())
+##     ) +
+##     geom_hline(yintercept = 0.8, linetype = &quot;dashed&quot;) +
+##     geom_errorbar(
+##       aes(ymin = lower, ymax = upper),
+##       color = &quot;black&quot;, width = 0.1
+##     ) +
+##     geom_line() +
+##     geom_point() +
+##     labs(
+##       y = &quot;Power&quot;,
+##       x = &quot;Sample size per condition&quot;
+##     ) +
+##     theme_apa() +
+##     geom_label(
+##       data = data_label,
+##       aes(x = n, y = power, label = n),
+##       nudge_y = -0.05,
+##       show.legend = FALSE
+##     ) +
+##     guides(x = guide_axis(angle = -90))
+## 
+## 
+##   return(power_curve)
+## }
+## 
+## [[25]]$visible
+## [1] FALSE
+## 
+## 
+## [[26]]
+## [[26]]$value
+## function() {
+##     npv_amount &lt;-
+##         get_npv()
+## 
+##     model_alignment_8 &lt;-
+##         get_model_alignment_8(8, npv_amount)
+## 
+##     n_vector &lt;-
+##         seq(from = 21, by = 1, length.out = 15)
+## 
+##     nsim &lt;- 3000
+## 
+##     pb &lt;- progress::progress_bar$new(
+##         format = &quot;[:bar] :current/:total eta :eta&quot;,
+##         total = nsim * length(n_vector),
+##         width = 50,
+##         force = TRUE
+##     )
+## 
+##     power_table &lt;-
+##         n_vector %&gt;%
+##         map_df(
+##             ~ get_simulation_summary_alignment_8(
+##                 n = 16 * .x,
+##                 model_alignment_8,
+##                 nsim,
+##                 pb,
+##                 npv_amount
+##             ) %&gt;%
+##                 mutate(
+##                     n = as.factor(.x * 4)
+##                 )
+##         )
+## }
+## 
+## [[26]]$visible
+## [1] FALSE
+## 
+## 
+## [[27]]
+## [[27]]$value
+## function(power_table) {
+##   data_power &lt;-
+##     power_table %&gt;%
+##     mutate(
+##       across(
+##         effect,
+##         ~ .x %&gt;%
+##           as_factor()
+##       )
+##     ) %&gt;%
+##     nest_by(effect, effect_type, power, upper, lower, n)
+## 
+##   min_n &lt;-
+##     data_power %&gt;%
+##     mutate(
+##       n = n %&gt;%
+##         as.character() %&gt;%
+##         as.numeric()
+##     ) %&gt;%
+##     pull(n) %&gt;%
+##     min()
+## 
+##   data_label &lt;-
+##     data_power %&gt;%
+##     filter(power &gt; 0.8) %&gt;%
+##     group_by(effect) %&gt;%
+##     slice_min(power, with_ties = FALSE) %&gt;%
+##     filter(n != min_n)
+## 
+##   power_curve &lt;-
+##     get_power_curve_alignment_8(data_power, data_label)
+## 
+##   n &lt;-
+##     data_label %&gt;%
+##     mutate(
+##       across(n, ~ .x %&gt;%
+##         as.character() %&gt;%
+##         as.numeric())
+##     ) %&gt;%
+##     pull(n) %&gt;%
+##     max()
+## 
+##   n_total &lt;-
+##     n %&gt;%
+##     prod(4)
+## 
+##   power &lt;-
+##     lst(
+##       power_curve,
+##       n,
+##       n_total
+##     )
+## 
+##   return(power)
+## }
+## 
+## [[27]]$visible
+## [1] FALSE
+## 
+## 
+## [[28]]
+## [[28]]$value
 ## function(projects, randomize_order) {
 ##   trial_projects &lt;-
 ##     trial_generic(
@@ -948,12 +1444,12 @@ pre code {
 ##   return(full_timeline)
 ## }
 ## 
-## [[20]]$visible
+## [[28]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[21]]
-## [[21]]$value
+## [[29]]
+## [[29]]$value
 ## function() {
 ##   business_name &lt;-
 ##     get_business_name()
@@ -1098,12 +1594,12 @@ pre code {
 ##   return(project_detail_alignment_8)
 ## }
 ## 
-## [[21]]$visible
+## [[29]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[22]]
-## [[22]]$value
+## [[30]]
+## [[30]]$value
 ## function() {
 ##   project_detail_feature &lt;-
 ##     list(
@@ -1163,12 +1659,12 @@ pre code {
 ##   return(project_detail_feature)
 ## }
 ## 
-## [[22]]$visible
+## [[30]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[23]]
-## [[23]]$value
+## [[31]]
+## [[31]]$value
 ## function(project_name) {
 ##     project_name_underlined &lt;-
 ##         project_name %&gt;%
@@ -1184,12 +1680,12 @@ pre code {
 ##     return(project_name_underlined)
 ## }
 ## 
-## [[23]]$visible
+## [[31]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[24]]
-## [[24]]$value
+## [[32]]
+## [[32]]$value
 ## function() {
 ##   project_name &lt;-
 ##     list(
@@ -1212,12 +1708,12 @@ pre code {
 ##   return(project_name)
 ## }
 ## 
-## [[24]]$visible
+## [[32]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[25]]
-## [[25]]$value
+## [[33]]
+## [[33]]$value
 ## function(data, reliability_amount) {
 ##   project_table &lt;-
 ##     data %&gt;%
@@ -1306,12 +1802,12 @@ pre code {
 ##   return(table_generation)
 ## }
 ## 
-## [[25]]$visible
+## [[33]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[26]]
-## [[26]]$value
+## [[34]]
+## [[34]]$value
 ## function() {
 ##   project_unit &lt;-
 ##     list(
@@ -1370,12 +1866,12 @@ pre code {
 ##   return(project_unit)
 ## }
 ## 
-## [[26]]$visible
+## [[34]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[27]]
-## [[27]]$value
+## [[35]]
+## [[35]]$value
 ## function() {
 ##   project_value_high &lt;-
 ##     list(
@@ -1435,12 +1931,12 @@ pre code {
 ##   return(project_value_high)
 ## }
 ## 
-## [[27]]$visible
+## [[35]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[28]]
-## [[28]]$value
+## [[36]]
+## [[36]]$value
 ## function() {
 ##   projects &lt;-
 ##     get_project_detail_alignment_8() %&gt;%
@@ -1461,12 +1957,12 @@ pre code {
 ##   return(projects)
 ## }
 ## 
-## [[28]]$visible
+## [[36]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[29]]
-## [[29]]$value
+## [[37]]
+## [[37]]$value
 ## function(data_check, prolific_filter, prolific_filter_label) {
 ##   if (is.na(prolific_filter_label)) prolific_filter_label &lt;- character(0)
 ##   file_name &lt;-
@@ -1489,12 +1985,12 @@ pre code {
 ##     write_lines(here(&quot;inst&quot;, &quot;extdata&quot;, &quot;prolific_id&quot;, file_name))
 ## }
 ## 
-## [[29]]$visible
+## [[37]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[30]]
-## [[30]]$value
+## [[38]]
+## [[38]]$value
 ## function(npv) {
 ##   reliability_explicit_keyword &lt;-
 ##     list(
@@ -1516,12 +2012,12 @@ pre code {
 ##   return(reliability_explicit)
 ## }
 ## 
-## [[30]]$visible
+## [[38]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[31]]
-## [[31]]$value
+## [[39]]
+## [[39]]$value
 ## function(npv) {
 ##   range &lt;-
 ##     npv %&gt;%
@@ -1542,12 +2038,12 @@ pre code {
 ##   return(reliability_implicit)
 ## }
 ## 
-## [[31]]$visible
+## [[39]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[32]]
-## [[32]]$value
+## [[40]]
+## [[40]]$value
 ## function(experiment_directory) {
 ##   file_name_materials &lt;-
 ##     get_file_name_materials_alignment_8()
@@ -1673,12 +2169,57 @@ pre code {
 ##     )
 ## }
 ## 
-## [[32]]$visible
+## [[40]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[33]]
-## [[33]]$value
+## [[41]]
+## [[41]]$value
+## function(n = 32, model_alignment_8, nsim, pb, npv_amount) {
+##   df &lt;-
+##     get_df_alignment_8(n = n, npv_amount)
+## 
+##   model_alignment_8$fitted.values &lt;-
+##     predict(model_alignment_8, newdata = df)
+## 
+##   afex::set_sum_contrasts()
+## 
+##   model_alignment_2 &lt;-
+##     alignment2::data %&gt;%
+##     filter(reliability_amount != &quot;noNPV&quot;) %&gt;%
+##     droplevels() %&gt;%
+##     nest_by(id, allocation, alignment, reliability_amount, npv_amount) %&gt;%
+##     lm(
+##       allocation ~ alignment * reliability_amount * npv_amount,
+##       data = .
+##     )
+## 
+##   sigma(model_alignment_8) &lt;- sigma(model_alignment_2)
+## 
+##   y &lt;-
+##     simulate(model_alignment_8, nsim)
+## 
+##   emmeans::emm_options(msg.interaction = FALSE)
+## 
+##   simulation_results &lt;-
+##     y %&gt;%
+##     map(
+##       ~ df %&gt;%
+##         mutate(allocation = .x)
+##     ) %&gt;%
+##     map_df(~ get_data_simulation_results(.x, pb))
+## 
+##   simulation_summary &lt;-
+##     summarise_simulation(simulation_results, nsim)
+##   return(simulation_summary)
+## }
+## 
+## [[41]]$visible
+## [1] FALSE
+## 
+## 
+## [[42]]
+## [[42]]$value
 ## function(label_text, name, minlength = NULL, maxlength = NULL, required = NULL, size = NULL, prefix = NULL, suffix = NULL) {
 ##   survey_text &lt;-
 ##     withTags(
@@ -1704,12 +2245,12 @@ pre code {
 ##   return(survey_text)
 ## }
 ## 
-## [[33]]$visible
+## [[42]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[34]]
-## [[34]]$value
+## [[43]]
+## [[43]]$value
 ## function(data, latin, name, npv_raw) {
 ##   table_latin &lt;-
 ##     list(
@@ -1728,12 +2269,12 @@ pre code {
 ##   return(table_latin)
 ## }
 ## 
-## [[34]]$visible
+## [[43]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[35]]
-## [[35]]$value
+## [[44]]
+## [[44]]$value
 ## function(condition_level, condition_name) {
 ##   if (!is.numeric(condition_level)) {
 ##     condition_level &lt;-
@@ -1754,12 +2295,12 @@ pre code {
 ## 
 ## }
 ## 
-## [[35]]$visible
+## [[44]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[36]]
-## [[36]]$value
+## [[45]]
+## [[45]]$value
 ## function(x) {
 ##     set.seed(42)
 ##     y &lt;- magic::rlatin(length(x)) %&gt;%
@@ -1769,12 +2310,12 @@ pre code {
 ##         purrr::map(~ x[.x])
 ## }
 ## 
-## [[36]]$visible
+## [[45]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[37]]
-## [[37]]$value
+## [[46]]
+## [[46]]$value
 ## function(x) {
 ##     htmltools::withTags({
 ##         ul(x %&gt;%
@@ -1786,12 +2327,12 @@ pre code {
 ##         as.character()
 ## }
 ## 
-## [[37]]$visible
+## [[46]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[38]]
-## [[38]]$value
+## [[47]]
+## [[47]]$value
 ## function(project_detail_alignment_8) {
 ##   projects_business_name_latin &lt;-
 ##     project_detail_alignment_8 %&gt;%
@@ -1844,12 +2385,12 @@ pre code {
 ##   return(projects_business_name_latin)
 ## }
 ## 
-## [[38]]$visible
+## [[47]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[39]]
-## [[39]]$value
+## [[48]]
+## [[48]]$value
 ## function(projects_business_name_latin) {
 ##   projects_project_table &lt;-
 ##     projects_business_name_latin %&gt;%
@@ -1863,12 +2404,12 @@ pre code {
 ##   return(projects_project_table)
 ## }
 ## 
-## [[39]]$visible
+## [[48]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[40]]
-## [[40]]$value
+## [[49]]
+## [[49]]$value
 ## function(data_raw_intrinsic_features_pivoted) {
 ##   data_allocation &lt;-
 ##     data_raw_intrinsic_features_pivoted %&gt;%
@@ -1879,12 +2420,12 @@ pre code {
 ##   return(data_allocation)
 ## }
 ## 
-## [[40]]$visible
+## [[49]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[41]]
-## [[41]]$value
+## [[50]]
+## [[50]]$value
 ## function(data_raw_project_allocation_cleaned) {
 ##   data_raw_intrinsic_features_pivoted &lt;-
 ##     data_raw_project_allocation_cleaned %&gt;%
@@ -1902,12 +2443,12 @@ pre code {
 ##   return(data_raw_intrinsic_features_pivoted)
 ## }
 ## 
-## [[41]]$visible
+## [[50]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[42]]
-## [[42]]$value
+## [[51]]
+## [[51]]$value
 ## function(data) {
 ## 
 ##   duplicates_removed &lt;-
@@ -1921,12 +2462,12 @@ pre code {
 ## 
 ## }
 ## 
-## [[42]]$visible
+## [[51]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[43]]
-## [[43]]$value
+## [[52]]
+## [[52]]$value
 ## function(data_other) {
 ##   interstitial_1_find &lt;-
 ##     data_other %&gt;%
@@ -1943,7 +2484,27 @@ pre code {
 ##   }
 ## }
 ## 
-## [[43]]$visible
+## [[52]]$visible
+## [1] FALSE
+## 
+## 
+## [[53]]
+## [[53]]$value
+## function(simulation_results, nsim) {
+##   simulation_results %&gt;%
+##     group_by(effect) %&gt;%
+##     mutate(
+##       mean_estimate = mean(estimate),
+##       mean_se = mean(std.error),
+##       sum(p.value &lt; 0.05) %&gt;%
+##         binom::binom.confint(nsim, level = 0.95, method = &quot;exact&quot;) %&gt;%
+##         select(mean, lower, upper) %&gt;%
+##         rename(power = mean)
+##     ) %&gt;%
+##     ungroup()
+## }
+## 
+## [[53]]$visible
 ## [1] FALSE</code></pre>
 <p>Clean data</p>
 <pre class="r"><code>data_raw_filtered &lt;-
@@ -1957,9 +2518,10 @@ pre code {
   filter(
     experiment == &quot;experiment8&quot;,
     thesis_project == &quot;alignment&quot;
-  )
-
-data_raw_jspsych_columns_unselected &lt;-
+  )</code></pre>
+<pre><code>## Warning: Duplicated column names deduplicated: &#39;id&#39; =&gt; &#39;id_1&#39; [5], &#39;id&#39; =&gt;
+## &#39;id_2&#39; [12]</code></pre>
+<pre class="r"><code>data_raw_jspsych_columns_unselected &lt;-
   data_raw_filtered %&gt;%
   rowwise() %&gt;%
   mutate(
