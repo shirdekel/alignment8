@@ -17,6 +17,7 @@ NULL
 
 
 
+
 #' Detailed description of the data
 #' @name data
 #' @docType data
@@ -29,6 +30,7 @@ NULL
 #' @seealso
 #' \link{alignment8data}
 NULL
+
 
 
 
@@ -54,6 +56,7 @@ NULL
 #' \link{alignment8}
 #' \link{power}
 NULL
+
 
 
 

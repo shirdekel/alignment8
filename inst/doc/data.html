@@ -166,40 +166,16 @@ pre code {
 
 <h1 class="title toc-ignore">Clean alignment 8 data.</h1>
 <h4 class="author">Shir Dekel</h4>
-<h4 class="date">2021-05-20 10:42:05</h4>
+<h4 class="date">2021-06-21 14:44:53</h4>
 
 </div>
 
 
 <p>Load packages and functions</p>
 <pre class="r"><code>source(DataPackageR::project_path(&quot;packages.R&quot;))</code></pre>
-<pre><code>## • {drake} is superseded: https://books.ropensci.org/targets/drake.html
-## • Consider {targets} instead: https://docs.ropensci.org/targets/
-## • Effective 2021-01-21</code></pre>
-<pre><code>## 
-## ************
-## Welcome to faux. For support and examples visit:
-## http://debruine.github.io/faux/
-## - Get and set global package options with: faux_options()
-## ************</code></pre>
-<pre><code>## Loading required package: tinylabels</code></pre>
-<pre><code>## Loading required package: lme4</code></pre>
-<pre><code>## Loading required package: Matrix</code></pre>
-<pre><code>## 
-## Attaching package: &#39;Matrix&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:tidyr&#39;:
-## 
-##     expand, pack, unpack</code></pre>
-<pre><code>## The following object is masked from &#39;package:drake&#39;:
-## 
-##     expand</code></pre>
-<pre><code>## Registered S3 methods overwritten by &#39;car&#39;:
-##   method                          from
-##   influence.merMod                lme4
-##   cooks.distance.influence.merMod lme4
-##   dfbeta.influence.merMod         lme4
-##   dfbetas.influence.merMod        lme4</code></pre>
+<pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer dplyr::filter over any other package</code></pre>
+<pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer purrr::flatten over any other package</code></pre>
 <pre class="r"><code>project_path(&quot;R&quot;) %&gt;%
   list.files(full.names = TRUE) %&gt;%
@@ -231,14 +207,6 @@ pre code {
 ## 
 ## [[3]]
 ## [[3]]$value
-## NULL
-## 
-## [[3]]$visible
-## [1] TRUE
-## 
-## 
-## [[4]]
-## [[4]]$value
 ## function(data, test_name, test_answer) {
 ##   data %&gt;%
 ##     rowwise() %&gt;%
@@ -265,12 +233,12 @@ pre code {
 ##     )
 ## }
 ## 
-## [[4]]$visible
+## [[3]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[5]]
-## [[5]]$value
+## [[4]]
+## [[4]]$value
 ## function(data, test, prolific_filter,
 ##                                             prolific_filter_label, test_name,
 ##                                             thesis_project, test_answer) {
@@ -333,12 +301,12 @@ pre code {
 ##     add_id_column(subject)
 ## }
 ## 
-## [[5]]$visible
+## [[4]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[6]]
-## [[6]]$value
+## [[5]]
+## [[5]]$value
 ## function(data_raw_prep, main_stage) {
 ##   data_other &lt;-
 ##     data_raw_prep %&gt;%
@@ -357,12 +325,12 @@ pre code {
 ##   return(data_other)
 ## }
 ## 
-## [[6]]$visible
+## [[5]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[7]]
-## [[7]]$value
+## [[6]]
+## [[6]]$value
 ## function(data_raw_jspsych_columns_unselected) {
 ##   names_to &lt;-
 ##     c(
@@ -400,12 +368,12 @@ pre code {
 ##   return(data_raw_project_allocation_cleaned)
 ## }
 ## 
-## [[7]]$visible
+## [[6]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[8]]
-## [[8]]$value
+## [[7]]
+## [[7]]$value
 ## function() {
 ##   business_name &lt;-
 ##     list(
@@ -487,12 +455,12 @@ pre code {
 ##   return(business_name)
 ## }
 ## 
-## [[8]]$visible
+## [[7]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[9]]
-## [[9]]$value
+## [[8]]
+## [[8]]$value
 ## function() {
 ##   columns_alignment_8 &lt;-
 ##     insert_property(
@@ -516,12 +484,12 @@ pre code {
 ##   return(columns_alignment_8)
 ## }
 ## 
-## [[9]]$visible
+## [[8]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[10]]
-## [[10]]$value
+## [[9]]
+## [[9]]$value
 ## function() {
 ##   list(
 ##     seq_len(5) %&gt;%
@@ -550,12 +518,12 @@ pre code {
 ##     js::coffee_compile(bare = TRUE)
 ## }
 ## 
-## [[10]]$visible
+## [[9]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[11]]
-## [[11]]$value
+## [[10]]
+## [[10]]$value
 ## function(data, pb) {
 ##   pb$tick()
 ## 
@@ -708,12 +676,12 @@ pre code {
 ##   return(data_simulation_results)
 ## }
 ## 
-## [[11]]$visible
+## [[10]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[12]]
-## [[12]]$value
+## [[11]]
+## [[11]]$value
 ## function() {
 ##   npv_amount &lt;-
 ##     get_npv()
@@ -726,12 +694,12 @@ pre code {
 ##   return(data_simulation_raw)
 ## }
 ## 
-## [[12]]$visible
+## [[11]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[13]]
-## [[13]]$value
+## [[12]]
+## [[12]]$value
 ## function(n = 8, npv_amount) {
 ##   reliability_amount &lt;- c(&quot;low&quot;, &quot;high&quot;)
 ##   reliability_type &lt;- c(&quot;implicit&quot;, &quot;explicit&quot;)
@@ -786,12 +754,12 @@ pre code {
 ##   return(df)
 ## }
 ## 
-## [[13]]$visible
+## [[12]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[14]]
-## [[14]]$value
+## [[13]]
+## [[13]]$value
 ## function(data) {
 ##   data %&gt;%
 ##     mutate(
@@ -804,12 +772,12 @@ pre code {
 ##     )
 ## }
 ## 
-## [[14]]$visible
+## [[13]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[15]]
-## [[15]]$value
+## [[14]]
+## [[14]]$value
 ## function() {
 ##   file_name_materials_alignment_8 &lt;-
 ##     c(
@@ -853,12 +821,12 @@ pre code {
 ##   return(file_name_materials_alignment_8)
 ## }
 ## 
-## [[15]]$visible
+## [[14]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[16]]
-## [[16]]$value
+## [[15]]
+## [[15]]$value
 ## function() {
 ##   instructions_main &lt;-
 ##     c(
@@ -922,12 +890,12 @@ pre code {
 ##   return(instructions)
 ## }
 ## 
-## [[16]]$visible
+## [[15]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[17]]
-## [[17]]$value
+## [[16]]
+## [[16]]$value
 ## function(interstitial_number) {
 ##   interstitial_name &lt;-
 ##     str_c(
@@ -980,12 +948,12 @@ pre code {
 ##     insert_javascript()
 ## }
 ## 
-## [[17]]$visible
+## [[16]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[18]]
-## [[18]]$value
+## [[17]]
+## [[17]]$value
 ## function(npv) {
 ##   max_min_ratio &lt;-
 ##     npv %&gt;%
@@ -1019,13 +987,13 @@ pre code {
 ##   return(intrinsic_feature_multipliers)
 ## }
 ## 
-## [[18]]$visible
+## [[17]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[19]]
-## [[19]]$value
-## function(gambles, randomize_order = TRUE) {
+## [[18]]
+## [[18]]$value
+## function(randomize_order = TRUE) {
 ##     instructions &lt;-
 ##         get_instructions_alignment_8()
 ## 
@@ -1048,12 +1016,12 @@ pre code {
 ##     return(main)
 ## }
 ## 
-## [[19]]$visible
+## [[18]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[20]]
-## [[20]]$value
+## [[19]]
+## [[19]]$value
 ## function(n = 8, npv_amount) {
 ## 
 ##   afex::set_sum_contrasts()
@@ -1117,12 +1085,12 @@ pre code {
 ##   return(model)
 ## }
 ## 
-## [[20]]$visible
+## [[19]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[21]]
-## [[21]]$value
+## [[20]]
+## [[20]]$value
 ## function() {
 ##   npv &lt;-
 ##     seq(from = 400, to = 800, length.out = 5) %&gt;%
@@ -1134,12 +1102,12 @@ pre code {
 ##   return(npv)
 ## }
 ## 
-## [[21]]$visible
+## [[20]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[22]]
-## [[22]]$value
+## [[21]]
+## [[21]]$value
 ## function() {
 ##   drake_plan(
 ##     experiment_resources = target(
@@ -1147,7 +1115,7 @@ pre code {
 ##       format = &quot;file&quot;
 ##     ),
 ##     main = target(
-##       get_main(gambles),
+##       get_main(),
 ##       ## Seed needed to recreate old target with different name. Generated from
 ##       ## `diagnose(experiment4)$seed` in the original thesis project.
 ##       seed = 1827196820
@@ -1207,12 +1175,12 @@ pre code {
 ##   )
 ## }
 ## 
-## [[22]]$visible
+## [[21]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[23]]
-## [[23]]$value
+## [[22]]
+## [[22]]$value
 ## function(data) {
 ##     data %&gt;%
 ##         ggplot(
@@ -1234,12 +1202,12 @@ pre code {
 ##         papaja::theme_apa(base_size = 10)
 ## }
 ## 
-## [[23]]$visible
+## [[22]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[24]]
-## [[24]]$value
+## [[23]]
+## [[23]]$value
 ## function() {
 ##     ## debrief &lt;-
 ##     ##     get_debrief()
@@ -1256,12 +1224,12 @@ pre code {
 ##     return(post)
 ## }
 ## 
-## [[24]]$visible
+## [[23]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[25]]
-## [[25]]$value
+## [[24]]
+## [[24]]$value
 ## function(data_power, data_label) {
 ##   power_curve &lt;-
 ##     data_power %&gt;%
@@ -1299,12 +1267,12 @@ pre code {
 ##   return(power_curve)
 ## }
 ## 
-## [[25]]$visible
+## [[24]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[26]]
-## [[26]]$value
+## [[25]]
+## [[25]]$value
 ## function() {
 ##     npv_amount &lt;-
 ##         get_npv()
@@ -1340,12 +1308,12 @@ pre code {
 ##         )
 ## }
 ## 
-## [[26]]$visible
+## [[25]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[27]]
-## [[27]]$value
+## [[26]]
+## [[26]]$value
 ## function(power_table) {
 ##   data_power &lt;-
 ##     power_table %&gt;%
@@ -1402,12 +1370,12 @@ pre code {
 ##   return(power)
 ## }
 ## 
-## [[27]]$visible
+## [[26]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[28]]
-## [[28]]$value
+## [[27]]
+## [[27]]$value
 ## function(projects, randomize_order) {
 ##   trial_projects &lt;-
 ##     trial_generic(
@@ -1485,12 +1453,12 @@ pre code {
 ##   return(full_timeline)
 ## }
 ## 
-## [[28]]$visible
+## [[27]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[29]]
-## [[29]]$value
+## [[28]]
+## [[28]]$value
 ## function() {
 ##   business_name &lt;-
 ##     get_business_name()
@@ -1635,12 +1603,12 @@ pre code {
 ##   return(project_detail_alignment_8)
 ## }
 ## 
-## [[29]]$visible
+## [[28]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[30]]
-## [[30]]$value
+## [[29]]
+## [[29]]$value
 ## function() {
 ##   project_detail_feature &lt;-
 ##     list(
@@ -1700,12 +1668,12 @@ pre code {
 ##   return(project_detail_feature)
 ## }
 ## 
-## [[30]]$visible
+## [[29]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[31]]
-## [[31]]$value
+## [[30]]
+## [[30]]$value
 ## function(project_name) {
 ##     project_name_underlined &lt;-
 ##         project_name %&gt;%
@@ -1721,12 +1689,12 @@ pre code {
 ##     return(project_name_underlined)
 ## }
 ## 
-## [[31]]$visible
+## [[30]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[32]]
-## [[32]]$value
+## [[31]]
+## [[31]]$value
 ## function() {
 ##   project_name &lt;-
 ##     list(
@@ -1749,12 +1717,12 @@ pre code {
 ##   return(project_name)
 ## }
 ## 
-## [[32]]$visible
+## [[31]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[33]]
-## [[33]]$value
+## [[32]]
+## [[32]]$value
 ## function(data, reliability_amount) {
 ##   project_table &lt;-
 ##     data %&gt;%
@@ -1843,12 +1811,12 @@ pre code {
 ##   return(table_generation)
 ## }
 ## 
-## [[33]]$visible
+## [[32]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[34]]
-## [[34]]$value
+## [[33]]
+## [[33]]$value
 ## function() {
 ##   project_unit &lt;-
 ##     list(
@@ -1907,12 +1875,12 @@ pre code {
 ##   return(project_unit)
 ## }
 ## 
-## [[34]]$visible
+## [[33]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[35]]
-## [[35]]$value
+## [[34]]
+## [[34]]$value
 ## function() {
 ##   project_value_high &lt;-
 ##     list(
@@ -1972,12 +1940,12 @@ pre code {
 ##   return(project_value_high)
 ## }
 ## 
-## [[35]]$visible
+## [[34]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[36]]
-## [[36]]$value
+## [[35]]
+## [[35]]$value
 ## function() {
 ##   projects &lt;-
 ##     get_project_detail_alignment_8() %&gt;%
@@ -1998,12 +1966,12 @@ pre code {
 ##   return(projects)
 ## }
 ## 
-## [[36]]$visible
+## [[35]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[37]]
-## [[37]]$value
+## [[36]]
+## [[36]]$value
 ## function(data_check, prolific_filter, prolific_filter_label) {
 ##   if (is.na(prolific_filter_label)) prolific_filter_label &lt;- character(0)
 ##   file_name &lt;-
@@ -2026,12 +1994,12 @@ pre code {
 ##     write_lines(here(&quot;inst&quot;, &quot;extdata&quot;, &quot;prolific_id&quot;, file_name))
 ## }
 ## 
-## [[37]]$visible
+## [[36]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[38]]
-## [[38]]$value
+## [[37]]
+## [[37]]$value
 ## function(npv) {
 ##   reliability_explicit_keyword &lt;-
 ##     list(
@@ -2053,12 +2021,12 @@ pre code {
 ##   return(reliability_explicit)
 ## }
 ## 
-## [[38]]$visible
+## [[37]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[39]]
-## [[39]]$value
+## [[38]]
+## [[38]]$value
 ## function(npv) {
 ##   range &lt;-
 ##     npv %&gt;%
@@ -2079,12 +2047,12 @@ pre code {
 ##   return(reliability_implicit)
 ## }
 ## 
-## [[39]]$visible
+## [[38]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[40]]
-## [[40]]$value
+## [[39]]
+## [[39]]$value
 ## function(experiment_directory) {
 ##   file_name_materials &lt;-
 ##     get_file_name_materials_alignment_8()
@@ -2210,12 +2178,12 @@ pre code {
 ##     )
 ## }
 ## 
-## [[40]]$visible
+## [[39]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[41]]
-## [[41]]$value
+## [[40]]
+## [[40]]$value
 ## function(n = 32, model_alignment_8, nsim, pb, npv_amount) {
 ##   df &lt;-
 ##     get_df_alignment_8(n = n, npv_amount)
@@ -2255,12 +2223,12 @@ pre code {
 ##   return(simulation_summary)
 ## }
 ## 
-## [[41]]$visible
+## [[40]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[42]]
-## [[42]]$value
+## [[41]]
+## [[41]]$value
 ## function(label_text, name, minlength = NULL, maxlength = NULL, required = NULL, size = NULL, prefix = NULL, suffix = NULL) {
 ##   survey_text &lt;-
 ##     withTags(
@@ -2286,12 +2254,12 @@ pre code {
 ##   return(survey_text)
 ## }
 ## 
-## [[42]]$visible
+## [[41]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[43]]
-## [[43]]$value
+## [[42]]
+## [[42]]$value
 ## function(data, latin, name, npv_raw) {
 ##   table_latin &lt;-
 ##     list(
@@ -2310,12 +2278,12 @@ pre code {
 ##   return(table_latin)
 ## }
 ## 
-## [[43]]$visible
+## [[42]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[44]]
-## [[44]]$value
+## [[43]]
+## [[43]]$value
 ## function(npv, percent) {
 ##   stringr::str_c(
 ##     (npv - npv * percent) %&gt;%
@@ -2326,12 +2294,12 @@ pre code {
 ##   )
 ## }
 ## 
-## [[44]]$visible
+## [[43]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[45]]
-## [[45]]$value
+## [[44]]
+## [[44]]$value
 ## function(condition_level, condition_name) {
 ##   if (!is.numeric(condition_level)) {
 ##     condition_level &lt;-
@@ -2352,12 +2320,12 @@ pre code {
 ## 
 ## }
 ## 
-## [[45]]$visible
+## [[44]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[46]]
-## [[46]]$value
+## [[45]]
+## [[45]]$value
 ## function(x) {
 ##     set.seed(42)
 ##     y &lt;- magic::rlatin(length(x)) %&gt;%
@@ -2367,12 +2335,12 @@ pre code {
 ##         purrr::map(~ x[.x])
 ## }
 ## 
-## [[46]]$visible
+## [[45]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[47]]
-## [[47]]$value
+## [[46]]
+## [[46]]$value
 ## function(x) {
 ##     htmltools::withTags({
 ##         ul(x %&gt;%
@@ -2384,12 +2352,12 @@ pre code {
 ##         as.character()
 ## }
 ## 
-## [[47]]$visible
+## [[46]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[48]]
-## [[48]]$value
+## [[47]]
+## [[47]]$value
 ## function(project_detail_alignment_8) {
 ##   projects_business_name_latin &lt;-
 ##     project_detail_alignment_8 %&gt;%
@@ -2442,12 +2410,12 @@ pre code {
 ##   return(projects_business_name_latin)
 ## }
 ## 
-## [[48]]$visible
+## [[47]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[49]]
-## [[49]]$value
+## [[48]]
+## [[48]]$value
 ## function(projects_business_name_latin) {
 ##   projects_project_table &lt;-
 ##     projects_business_name_latin %&gt;%
@@ -2461,12 +2429,12 @@ pre code {
 ##   return(projects_project_table)
 ## }
 ## 
-## [[49]]$visible
+## [[48]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[50]]
-## [[50]]$value
+## [[49]]
+## [[49]]$value
 ## function(data_raw_intrinsic_features_pivoted) {
 ##   data_allocation &lt;-
 ##     data_raw_intrinsic_features_pivoted %&gt;%
@@ -2477,12 +2445,12 @@ pre code {
 ##   return(data_allocation)
 ## }
 ## 
-## [[50]]$visible
+## [[49]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[51]]
-## [[51]]$value
+## [[50]]
+## [[50]]$value
 ## function(data_raw_project_allocation_cleaned) {
 ##   data_raw_intrinsic_features_pivoted &lt;-
 ##     data_raw_project_allocation_cleaned %&gt;%
@@ -2500,12 +2468,12 @@ pre code {
 ##   return(data_raw_intrinsic_features_pivoted)
 ## }
 ## 
-## [[51]]$visible
+## [[50]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[52]]
-## [[52]]$value
+## [[51]]
+## [[51]]$value
 ## function(data) {
 ## 
 ##   duplicates_removed &lt;-
@@ -2519,12 +2487,12 @@ pre code {
 ## 
 ## }
 ## 
-## [[52]]$visible
+## [[51]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[53]]
-## [[53]]$value
+## [[52]]
+## [[52]]$value
 ## function(data_other) {
 ##   interstitial_1_find &lt;-
 ##     data_other %&gt;%
@@ -2541,12 +2509,12 @@ pre code {
 ##   }
 ## }
 ## 
-## [[53]]$visible
+## [[52]]$visible
 ## [1] FALSE
 ## 
 ## 
-## [[54]]
-## [[54]]$value
+## [[53]]
+## [[53]]$value
 ## function(simulation_results, nsim) {
 ##   simulation_results %&gt;%
 ##     group_by(effect) %&gt;%
@@ -2561,7 +2529,7 @@ pre code {
 ##     ungroup()
 ## }
 ## 
-## [[54]]$visible
+## [[53]]$visible
 ## [1] FALSE</code></pre>
 <p>Clean data</p>
 <pre class="r"><code>data_raw_filtered &lt;-

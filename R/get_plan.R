@@ -10,7 +10,7 @@ get_plan <- function() {
       format = "file"
     ),
     main = target(
-      get_main(gambles),
+      get_main(),
       ## Seed needed to recreate old target with different name. Generated from
       ## `diagnose(experiment4)$seed` in the original thesis project.
       seed = 1827196820
