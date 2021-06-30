@@ -1,3 +1,8 @@
+DataVersion: 0.1.3
+=======================
+* Added: plot_simulation
+Fix power curve legend
+
 DataVersion: 0.1.2
 =======================
 * Changed: power
