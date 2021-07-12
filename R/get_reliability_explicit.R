@@ -1,3 +1,8 @@
+##' @title Get explicit reliability
+
+##' @return
+##' @author Shir Dekel
+##' @export
 get_reliability_explicit <- function(npv) {
   reliability_explicit_keyword <-
     list(
