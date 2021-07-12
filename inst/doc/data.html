@@ -363,16 +363,31 @@ pre code {
 
 <h1 class="title toc-ignore">Clean alignment 8 data.</h1>
 <h4 class="author">Shir Dekel</h4>
-<h4 class="date">2021-07-11 18:15:24</h4>
+<h4 class="date">2021-07-13 09:32:24</h4>
 
 </div>
 
 
 <p>Load packages and functions</p>
 <pre class="r"><code>source(DataPackageR::project_path(&quot;packages.R&quot;))</code></pre>
-<pre><code>## [conflicted] Removing existing preference</code></pre>
+<pre><code>## 
+## ************
+## Welcome to faux. For support and examples visit:
+## http://debruine.github.io/faux/
+## - Get and set global package options with: faux_options()
+## ************</code></pre>
+<pre><code>## Loading required package: tinylabels</code></pre>
+<pre><code>## Loading required package: lme4</code></pre>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## 
+## Attaching package: &#39;Matrix&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:tidyr&#39;:
+## 
+##     expand, pack, unpack</code></pre>
+<pre><code>## The following object is masked from &#39;package:drake&#39;:
+## 
+##     expand</code></pre>
 <pre><code>## [conflicted] Will prefer dplyr::filter over any other package</code></pre>
-<pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer purrr::flatten over any other package</code></pre>
 <pre class="r"><code>project_path(&quot;R&quot;) %&gt;%
   list.files(full.names = TRUE) %&gt;%
@@ -2333,14 +2348,14 @@ pre code {
 ## function(npv) {
 ##   range &lt;-
 ##     npv %&gt;%
-##     map2_chr(
+##     purrr::map2_chr(
 ##       c(0.85, 0.05), # low reliability, high reliability, to keep consistent
 ##                      # with explicit reliability
 ##       ~ getrange(.x, .y)
 ##     )
 ## 
 ##   reliability_implicit &lt;-
-##     str_c(
+##     stringr::str_c(
 ##       range,
 ##       &quot; million.&lt;br&gt;(Midpoint: &quot;,
 ##       npv,
@@ -2854,9 +2869,10 @@ pre code {
   filter(
     experiment == &quot;experiment8&quot;,
     thesis_project == &quot;alignment&quot;
-  )
-
-data_raw_jspsych_columns_unselected &lt;-
+  )</code></pre>
+<pre><code>## Warning: Duplicated column names deduplicated: &#39;id&#39; =&gt; &#39;id_1&#39; [5], &#39;id&#39; =&gt;
+## &#39;id_2&#39; [12]</code></pre>
+<pre class="r"><code>data_raw_jspsych_columns_unselected &lt;-
   data_raw_filtered %&gt;%
   rowwise() %&gt;%
   mutate(
