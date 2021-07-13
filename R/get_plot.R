@@ -6,12 +6,12 @@
 get_plot <- function(data = alignment8::data) {
   allocation <-
     data %>%
-    get_omnibus("allocation") %>%
+    alignment8::get_omnibus("allocation") %>%
     afex_plot_alignment_8(dv_label = "Mean allocation (%)")
 
   ranking <-
     data %>%
-    get_omnibus("ranking") %>%
+    alignment8::get_omnibus("ranking") %>%
     afex_plot_alignment_8(dv_label = "Mean ranking")
 
   tibble::lst(

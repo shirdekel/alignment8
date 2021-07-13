@@ -12,8 +12,8 @@ get_reliability_explicit <- function(npv) {
 
   reliability_explicit <-
     reliability_explicit_keyword %>%
-    map_chr(
-      ~ str_c(
+    purrr::map_chr(
+      ~ stringr::str_c(
         npv,
         " million. <br>(In this industry, NPV is ",
         .x,
